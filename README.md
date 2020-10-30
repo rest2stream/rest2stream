@@ -9,7 +9,6 @@ python3 -m pip install uvicorn
 
 ## How to run development server?
 
-#### create all the required tables
 ```
 uvicorn main:routes --reload
 ```
