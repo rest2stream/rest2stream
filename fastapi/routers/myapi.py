@@ -1,6 +1,7 @@
 from typing import Optional
 from fastapi import APIRouter
 from pydantic import BaseModel, HttpUrl
+from models import MyApi_Pydantic, MyApisIn_Pydantic, MyApis
 
 router = APIRouter()
 
