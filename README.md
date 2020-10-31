@@ -10,5 +10,6 @@ python3 -m pip install uvicorn
 ## How to run development server?
 
 ```
-uvicorn main:routes --reload
+cd /home/{username}/fastapi-rest2stream/fastapi
+uvicorn main:app --reload
 ```
