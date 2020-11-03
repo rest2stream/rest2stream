@@ -1,6 +1,11 @@
 # fastapi-rest2stream
 Rest API 2 Stream data (RATS) 🐀  a web service that can help developers convert their Rest API into a stream of real-time data. 
 
+## Screenshot 
+
+![image](https://user-images.githubusercontent.com/3206118/97995850-0665fa80-1e22-11eb-9a83-1692525ff78c.png)
+
+
 ## Installation (FastAPI Backend)
 ```
 python3 -m pip install fastapi
