@@ -25,6 +25,10 @@
   <main class="mdl-layout__content">
     <div class="page-content">
         <!-- Your content goes here -->
+      <div class="mdl-typography--display-1"> <!-- header -->
+        {{pageHeader}}
+      </div>
+
       <router-view />
     </div>
   </main>
@@ -32,8 +36,25 @@
 </template>
 
 <script>
+import { ref, computed } from 'vue'
+import { useStore } from 'vuex'
 
 export default {
   name: 'App',
+  setup() {
+    const store = useStore();
+    const pageHeader = computed(() => store.state.site.page_header)
+    return {
+      pageHeader
+    }
+  }
 }
 </script>
+
+<style lang="scss">
+
+  .page-content {
+    padding: 2rem;
+  }
+
+</style>
