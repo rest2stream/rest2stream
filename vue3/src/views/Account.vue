@@ -3,13 +3,15 @@
 
 
 <script>
-  import { useStore } from 'vuex'
-  import types from '../store/types'
+  import { onMounted } from 'vue'
+  import useSite  from '../use/useSite';
   export default {
     name: "Account",
     setup() {
-      const store = useStore()
-      store.commit(`site/${types.SET_PAGE_HEADER}`, 'Account')
+      const site = useSite()
+      onMounted(() => {
+        site.setSite('MyApi')
+      })
     }
   }
 </script>

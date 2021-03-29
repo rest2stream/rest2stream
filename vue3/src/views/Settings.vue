@@ -2,13 +2,13 @@
 </template>
 
 <script>
-  import { useStore } from 'vuex'
-  import types from '../store/types'
+  import { onMounted } from 'vue'
+  import useSite  from '../use/useSite';
   export default {
     name: "Settings",
     setup() {
-      const store = useStore()
-      store.commit(`site/${types.SET_PAGE_HEADER}`, 'Settings')
+      const site = useSite();
+      site.setSite('Settings')
     }
   }
 </script>
