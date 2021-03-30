@@ -25,11 +25,18 @@
   <main class="mdl-layout__content">
     <div class="page-content">
         <!-- Your content goes here -->
-      <div class="mdl-typography--display-1"> <!-- header -->
-        {{pageHeader}}
+      <div class="app">
+        <div class="app__header mdl-typography--headline"> <!-- header -->
+          {{pageHeader}}
+        </div>
+        <div class="app__main">
+          <router-view />
+        </div>
+        <div class="app__footer">
+            footer?
+        </div>
       </div>
 
-      <router-view />
     </div>
   </main>
 </div>
@@ -53,8 +60,44 @@ export default {
 
 <style lang="scss">
 
-  .page-content {
-    padding: 2rem;
+  *, *:before, *:after {
+      box-sizing: border-box;
+  }
+
+  html, body {
+    margin:0;
+    padding:0;
+    color: #4a4a4a;
+    background-color:#ecebeb;
+  }
+
+  .app {
+    padding: 1rem 2rem 1rem 2rem;
+    display: grid;
+    height: 84vh;
+    gap: 1rem;
+    grid-template-rows: 60px auto 50px;
+    grid-template-areas: "header"
+                         "main"
+                         "footer";
+
+    &__header {
+      grid-area: header;
+      padding:1rem;
+/*      background-color:white; */
+    }
+
+    &__main {
+      grid-area: main;
+      padding:1rem;
+      background-color:white;
+    }
+
+    &__footer {
+      grid-area: footer;
+      padding:1rem;
+    }
+
   }
 
 </style>
