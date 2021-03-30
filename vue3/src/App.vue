@@ -72,7 +72,7 @@ export default {
   }
 
   .app {
-    padding: 1rem 2rem 1rem 2rem;
+    padding: 1rem 2rem; /*top/bottom 1rem, left/right 2rem*/
     display: grid;
     height: 84vh;
     gap: 1rem;
@@ -84,7 +84,6 @@ export default {
     &__header {
       grid-area: header;
       padding:1rem;
-/*      background-color:white; */
     }
 
     &__main {
