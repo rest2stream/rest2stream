@@ -1,11 +1,12 @@
 <template>
 
   <div class="myapi-grid mdl-typography--h6">
-    <div class="myapi-grid__name">Name</div>
-    <div class="myapi-grid__url">Url</div>
-    <div class="myapi-grid__frequency">Polling Frequency</div>
+    <div class="myapi-grid__name"><strong>Name</strong></div>
+    <div class="myapi-grid__url"><strong>Url</strong></div>
+    <div class="myapi-grid__frequency"><strong>Polling Frequency</strong></div>
+    <div class="myapi-grid__row-border"></div>
     <template v-for="api in listOfApi">
-      <div class="myapi-grid__name"><a href=""><strong>{{api.name}}</strong></a></div>
+      <div class="myapi-grid__name"><a href="">{{api.name}}</a></div>
       <div class="myapi-grid__url">{{api.url}}</div>
       <div class="myapi-grid__frequency">{{api.polling_frequency}} {{api.polling_unit}}</div>
     </template>
@@ -62,7 +63,14 @@
       display:grid;
       justify-content: center;
     }
+
+    &__row-border{
+      border-top: 1px solid #ecebeb;
+      grid-column: 1 / 4; /* this code makes the row stretch to entire width of the container */
+    }
+
   }
+
 
 
 </style>
