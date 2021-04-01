@@ -17,9 +17,9 @@
   <div class="mdl-layout__drawer">
     <span class="mdl-layout-title">Rats</span>
     <nav class="mdl-navigation">
-      <router-link class="mdl-navigation__link" :to="{ name: 'Myapi' }">My APIs</router-link> 
-      <router-link class="mdl-navigation__link" :to="{ name: 'Settings' }">Settings</router-link>
-      <router-link class="mdl-navigation__link" :to="{ name: 'Account' }">Account</router-link>
+      <router-link class="mdl-navigation__link" :to="{ name: 'myapi' }">My APIs</router-link> 
+      <router-link class="mdl-navigation__link" :to="{ name: 'settings' }">Settings</router-link>
+      <router-link class="mdl-navigation__link" :to="{ name: 'account' }">Account</router-link>
     </nav>
   </div>
   <main class="mdl-layout__content">

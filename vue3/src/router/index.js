@@ -1,22 +1,28 @@
 import { createWebHistory, createRouter } from "vue-router";
-import Myapi from "../views/Myapi.vue";
+import MyApi from "../views/Myapi.vue";
+import MyApiEdit from "../views/MyapiEdit.vue";
 import Settings from "../views/Settings.vue";
 import Account from "../views/Account.vue";
 
 const routes = [
   {
     path: "/",
-    name: "Myapi",
-    component: Myapi,
+    name: "myapi",
+    component: MyApi,
+  },
+  {
+    path: "/myapi/edit/:id",
+    name: "myapi-edit",
+    component: MyApiEdit,
   },
   {
     path: "/settings/",
-    name: "Settings",
+    name: "settings",
     component: Settings,
   },
   {
     path: "/account/",
-    name: "Account",
+    name: "account",
     component: Account,
   },
 ];
