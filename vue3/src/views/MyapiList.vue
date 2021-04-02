@@ -1,7 +1,5 @@
 <template>
 
-  <router-view></router-view>
-
   <div class="myapi-grid mdl-typography--h6">
     <div class="myapi-grid__name"><strong>Name</strong></div>
     <div class="myapi-grid__url"><strong>Url</strong></div>
@@ -33,7 +31,7 @@
   import useSite  from '../use/useSite';
   import { useRouter } from 'vue-router';
   export default {
-    name: "MyApi",
+    name: "MyApiList",
     setup() {
       const listOfApi = reactive([
         { id: 1, name: "NBA Sport Api", url: "https://api-sports/api/api-nba", polling_frequency: 5, polling_unit: "min."},

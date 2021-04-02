@@ -1,6 +1,7 @@
 import { createWebHistory, createRouter } from "vue-router";
-import MyApi from "../views/Myapi.vue";
+import MyApiIndex from "../views/MyapiIndex.vue";
 import MyApiEdit from "../views/MyapiEdit.vue";
+import MyApiList from "../views/MyapiList.vue";
 import Settings from "../views/Settings.vue";
 import Account from "../views/Account.vue";
 
@@ -8,12 +9,20 @@ const routes = [
   {
     path: "/",
     name: "myapi",
-    component: MyApi,
-  },
-  {
-    path: "/myapi/edit/:id",
-    name: "myapi-edit",
-    component: MyApiEdit,
+    component: MyApiIndex,
+    redirect: { name: "myapi-list"},
+    children: [
+      {
+        path: "/myapi/list",
+        name: "myapi-list",
+        component: MyApiList,
+      },
+      {
+        path: "/myapi/edit/:id",
+        name: "myapi-edit",
+        component: MyApiEdit,
+      },
+    ]
   },
   {
     path: "/settings/",
