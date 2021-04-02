@@ -1,7 +1,7 @@
 import { createWebHistory, createRouter } from "vue-router";
-import MyApiIndex from "../views/MyapiIndex.vue";
-import MyApiEdit from "../views/MyapiEdit.vue";
-import MyApiList from "../views/MyapiList.vue";
+import MyApiIndex from "../views/MyApiIndex.vue";
+import MyApiEdit from "../views/MyApiEdit.vue";
+import MyApiList from "../views/MyApiList.vue";
 import Settings from "../views/Settings.vue";
 import Account from "../views/Account.vue";
 
