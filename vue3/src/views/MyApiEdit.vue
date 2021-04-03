@@ -1,7 +1,7 @@
 <template>
-  <form class="myapi-edit">
+  <form :class="css">
 
-    <div class="myapi-edit__name">
+    <div :class="`${css}__name`">
       <FormInput
         id="Name"
         type="text"
@@ -10,8 +10,7 @@
       />
     </div>
 
-
-    <div class="myapi-edit__desc">
+    <div :class="`${css}__desc`">
       <FormInput
         id="Desc"
         type="text"
@@ -20,7 +19,7 @@
       />
     </div>
 
-    <div class="myapi-edit__url">
+    <div :class="`${css}__url`">
       <FormInput
         id="Url"
         type="url"
@@ -29,7 +28,7 @@
       />
     </div>
 
-    <div class="myapi-edit__frequency">
+    <div :class="`${css}__frequency`">
       <div>
         <FormInput
           id="Frequency"
@@ -64,6 +63,7 @@
     setup() {
       const router = useRouter();
       const site = useSite();
+      const css = ref('myapi-edit');
       const frm = reactive({
         name: "NBA Api",
         desc: "",
@@ -71,13 +71,14 @@
         frequency: "",
         unit: "mins"
       })
-      console.log(router)
+
       onMounted(() => {
         site.setSite('Edit MyApi')
       })
 
       return {
-        frm
+        frm,
+        css
       }
     }
   }
