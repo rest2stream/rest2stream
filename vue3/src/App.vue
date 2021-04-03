@@ -26,7 +26,7 @@
     <div class="page-content">
         <!-- Your content goes here -->
       <div class="app">
-        <div class="app__header mdl-typography--headline"> <!-- header -->
+        <div class="app__header mdl-typography--title"> <!-- header -->
           {{pageHeader}}
         </div>
         <div class="app__main">
