@@ -1,9 +1,11 @@
 <template>
   <form :class="css">
+  {{frm}}
 
     <div :class="`${css}__name`">
       <FormInput
-        id="Name"
+        id="name"
+        label="Name"
         type="text"
         placeholder="Please enter text"
         v-model="frm.name"
@@ -12,7 +14,8 @@
 
     <div :class="`${css}__desc`">
       <FormInput
-        id="Desc"
+        id="desc"
+        label="Desc"
         type="text"
         placeholder="Please enter desc"
         v-model="frm.desc"
@@ -21,7 +24,8 @@
 
     <div :class="`${css}__url`">
       <FormInput
-        id="Url"
+        id="url"
+        label="Url"
         type="url"
         placeholder="Please enter valid url"
         v-model="frm.url"
@@ -31,7 +35,8 @@
     <div :class="`${css}__frequency`">
       <div>
         <FormInput
-          id="Frequency"
+          id="frequency"
+          label="Frequency"
           type="text"
           placeholder="Polling frequency"
           v-model="frm.frequency"
@@ -40,8 +45,13 @@
       <div>
         <FormSelect 
           v-model="frm.unit"
-          id="Unit"
-          :options="['mins', 'secs']"
+          id="unit"
+          label="Unit"
+          :options="{
+            mins: 'mins',
+            secs: 'secs'
+            }"
+          help="This is a test"
         />
       </div>
     </div>

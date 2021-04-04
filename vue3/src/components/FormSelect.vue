@@ -3,15 +3,19 @@
   <label 
     class="frm-label" 
     :for="id"
-  >{{id}}</label>
+  >{{label}}</label>
 
   <select 
     class="frm-select"
     :value="modelValue"
     @change="$emit('update:modelValue', $event.target.value)"
   >
-    <option v-for="opt in options">{{opt}}</option>
+    <option 
+      v-for="(name, value) in options" :value="value"
+    >{{name}}</option>
   </select>
+
+  <span v-if="help">{{help}}</span>
   
 
 </template>
@@ -28,8 +32,15 @@
         type: String,
         required: true,
       },
+      label: {
+        type: String,
+        required: true
+      },
       options: {
-        type: Array
+        type: Object
+      },
+      help: {
+        type: String
       }
     },
     setup() {

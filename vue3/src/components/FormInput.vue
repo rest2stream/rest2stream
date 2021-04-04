@@ -1,9 +1,8 @@
 <template>
 
     <label 
-      class="frm-label" 
       :for="id"
-    >{{id}}</label>
+    >{{label}}</label>
 
     <input 
       class="frm-input" 
@@ -13,6 +12,9 @@
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
     >
+
+    <span v-if="help">{{help}}</span>
+
 </template>
 
 <script>
@@ -33,6 +35,13 @@
         },
         placeholder: { 
           type: String,
+        },
+        label: {
+          type: String,
+          required: true
+        },
+        help: {
+          type: String
         }
       },
       setup(props) {
