@@ -27,20 +27,25 @@
 
 
 <script>
-  import { onMounted, reactive, ref } from 'vue';
+  import { onMounted, reactive, ref, computed } from 'vue';
   import useSite  from '../use/useSite';
+  import useMyApi  from '../use/useMyApi';
   import { useRouter } from 'vue-router';
+  import { useStore } from 'vuex';
   export default {
     name: "MyApiList",
     setup() {
       const css = ref('myapi-list')
-      const listOfApi = reactive([
-        { id: 1, name: "NBA Sport Api", url: "https://api-sports/api/api-nba", polling_frequency: 5, polling_unit: "min."},
-        { id: 2, name: "API Football", url: "https://rapidapi.com/api-sports/api/api-football", polling_frequency: 5, polling_unit: "secs."}
-      ])
+      const listOfApi = computed(() => store.state.myapi.myapi);
+      //const listOfApi = reactive([
+      //  { id: 1, name: "NBA Sport Api", url: "https://api-sports/api/api-nba", polling_frequency: 5, polling_unit: "min."},
+      //  { id: 2, name: "API Football", url: "https://rapidapi.com/api-sports/api/api-football", polling_frequency: 5, polling_unit: "secs."}
+      //])
 
       const site = useSite();
+      const myapi = useMyApi();
       const router = useRouter();
+      const store = useStore();
 
       const goEdit = (id) => {
         router.push({ name: 'myapi-edit', params: { id: id } })
@@ -48,13 +53,15 @@
 
 
       onMounted(() => {
-        site.setSite('MyApi')
+        site.setSite('MyApi');
+        myapi.fetch();
       })
 
       return {
         listOfApi,
         goEdit,
-        css
+        css,
+        store
       }
 
     }

@@ -9,8 +9,13 @@ export default function useMyApi() {
     store.dispatch(`myapi/${types.CREATE_MYAPI}`, obj)
   }
 
+  function fetch(obj) {
+    store.dispatch(`myapi/${types.FETCH_MYAPI}`)
+  }
+
   return {
-    create
+    create,
+    fetch
   }
 
 }
