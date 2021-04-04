@@ -6,7 +6,7 @@ class MyApis(models.Model):
     name = fields.CharField(max_length=50, null=True)
     description = fields.CharField(max_length=200, null=True)
     polling_frequency = fields.IntField()
-    polling_unit = fields.IntField() #seconds/minute
+    polling_unit = fields.CharField(max_length=12, null=True) #seconds/minute
     url = fields.CharField(max_length=100, null=True)
     http_headers = fields.CharField(max_length=100, null=True)
     query_params = fields.CharField(max_length=100, null=True)
