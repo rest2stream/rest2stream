@@ -35,8 +35,7 @@
         required: true,
       },
       label: {
-        type: String,
-        required: true
+        type: String
       },
       options: {
         type: Object

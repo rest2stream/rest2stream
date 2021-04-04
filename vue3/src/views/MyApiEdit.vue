@@ -1,6 +1,8 @@
 <template>
-  <form :class="css">
+  <form :class="css" @submit.prevent="create()">
   {{frm}}
+
+  {{store.state.myapi}}
 
     <div :class="`${css}__name`">
       <FormInput
@@ -18,7 +20,7 @@
         label="Desc"
         type="text"
         placeholder="Please enter desc"
-        v-model="frm.desc"
+        v-model="frm.description"
       />
     </div>
 
@@ -39,14 +41,14 @@
           label="Frequency"
           type="text"
           placeholder="Polling frequency"
-          v-model="frm.frequency"
+          v-model="frm.polling_frequency"
         />
       </div>
       <div>
         <FormSelect 
-          v-model="frm.unit"
+          v-model="frm.polling_unit"
           id="unit"
-          :options="{ hours: 'hour/s', minutes: 'minute/s', seconds: 'second/s' }"
+          :options="{ hours : 'hours', minutes: 'minutes', seconds: 'seconds' }"
           help="This is a test"
         />
       </div>
@@ -84,7 +86,9 @@
 <script>
   import { onMounted, ref, reactive } from 'vue';
   import useSite  from '../use/useSite';
+  import useMyApi  from '../use/useMyApi';
   import { useRouter } from 'vue-router';
+  import { useStore } from 'vuex';
   import FormInput  from '../components/FormInput.vue';
   import FormSelect  from '../components/FormSelect.vue';
   import FormTextarea  from '../components/FormTextarea.vue';
@@ -98,13 +102,15 @@
     setup() {
       const router = useRouter();
       const site = useSite();
+      const myapi = useMyApi();
+      const store = useStore();
       const css = ref('myapi-edit');
       const frm = reactive({
         name: "NBA Api",
-        desc: "",
+        description: "",
         url: "",
-        frequency: "",
-        unit: "minutes",
+        polling_frequency: "",
+        polling_unit: "minutes",
         http_headers: "",
         query_params: ""
       })
@@ -113,9 +119,16 @@
         site.setSite('Edit MyApi')
       })
 
+      function create() {
+        myapi.create(frm)
+        console.log(frm)
+      }
+
       return {
         frm,
-        css
+        css,
+        create,
+        store
       }
     }
   }
