@@ -46,15 +46,38 @@
         <FormSelect 
           v-model="frm.unit"
           id="unit"
-          label="Unit"
-          :options="{
-            mins: 'mins',
-            secs: 'secs'
-            }"
+          :options="{ hours: 'hour/s', minutes: 'minute/s', seconds: 'second/s' }"
           help="This is a test"
         />
       </div>
     </div>
+
+    <div :class="`${css}__headers`">
+      <FormTextarea
+        v-model="frm.http_headers"
+        id="headers"
+        label="HTTP Headers"
+        placeholder="Add Multiple HTTP headers in json format"
+        help="example: { Authorization: 'Basic AfgasdwQDU1dzByYM==' }"
+      />
+    </div>
+
+    <div :class="`${css}__query_params`">
+      <FormTextarea
+        v-model="frm.query_params"
+        id="query_params"
+        label="Query Params"
+        placeholder="Add Multiple Query params in json format"
+        help="example: { token : 'yzkg' }"
+      />
+    </div>
+
+    <div :class="`${css}__button`">
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+        Save
+      </button>
+    </div>
+
   </form>
 </template>
 
@@ -64,11 +87,13 @@
   import { useRouter } from 'vue-router';
   import FormInput  from '../components/FormInput.vue';
   import FormSelect  from '../components/FormSelect.vue';
+  import FormTextarea  from '../components/FormTextarea.vue';
   export default {
     name: "MyApiEdit",
     components: {
       FormInput,
-      FormSelect
+      FormSelect,
+      FormTextarea
     },
     setup() {
       const router = useRouter();
@@ -79,7 +104,9 @@
         desc: "",
         url: "",
         frequency: "",
-        unit: "mins"
+        unit: "minutes",
+        http_headers: "",
+        query_params: ""
       })
 
       onMounted(() => {
@@ -101,9 +128,11 @@
     padding: 2rem;
     gap: 2rem;
     grid-template-columns: auto 300px;
-    grid-template-areas: "name frequency"
-                         "desc frequency"
-                         "url frequency";
+    grid-template-areas: "name headers"
+                         "desc headers"
+                         "url query_params"
+                         "frequency query_params"
+                         "frequency button";
                          
 
     &__name {        
@@ -123,6 +152,20 @@
       display: grid;
       gap: 1rem;
       grid-template-columns: auto 100px;
+      justify-content: left;
+    }
+
+    &__headers {
+      grid-area: headers;
+    }
+
+    &__query_params {
+      grid-area: query_params;
+    }
+
+    &__button {
+      grid-area: button;
+      justify-self: right;
     }
   }
 

@@ -6,14 +6,15 @@
       :for="id"
     >{{label}}</label>
 
-    <input 
+    <textarea 
       class="mdl-textfield__input"
-      :type="type" 
       :id="id" 
       :placeholder="placeholder"
+      :rows="rows"
+      :cols="cols"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
-    >
+    ></textarea>
 
     <span v-if="help">{{help}}</span>
   </div>
@@ -22,17 +23,13 @@
 
 <script>
   export default {
-      name: "FormInput",
+      name: "FormTextarea",
       props: {
         modelValue: {
           type: String,
           required: true
         },
         id: {
-          type: String,
-          required: true,
-        },
-        type: {
           type: String,
           required: true,
         },
@@ -45,6 +42,14 @@
         },
         help: {
           type: String
+        },
+        rows: {
+          type: Number,
+          default: 4
+        },
+        cols: {
+          type: Number,
+          default: 30
         }
       },
       setup(props) {

@@ -1,21 +1,23 @@
 <template>
 
-  <label 
-    class="frm-label" 
-    :for="id"
-  >{{label}}</label>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <label 
+      class="mdl-textfield__label"
+      :for="id"
+    >{{label}}</label>
 
-  <select 
-    class="frm-select"
-    :value="modelValue"
-    @change="$emit('update:modelValue', $event.target.value)"
-  >
-    <option 
-      v-for="(name, value) in options" :value="value"
-    >{{name}}</option>
-  </select>
+    <select 
+      class="mdl-textfield__input"
+      :value="modelValue"
+      @change="$emit('update:modelValue', $event.target.value)"
+    >
+      <option 
+        v-for="(name, value) in options" :value="value"
+      >{{name}}</option>
+    </select>
 
-  <span v-if="help">{{help}}</span>
+    <span v-if="help">{{help}}</span>
+  </div>
   
 
 </template>
