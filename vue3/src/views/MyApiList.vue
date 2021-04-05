@@ -7,14 +7,12 @@
     <div :class="`${css}__action`"><strong>Action</strong></div>
     <div :class="`${css}__row-border`"></div>
     <template v-for="api in listOfApi">
-      <div :class="`${css}__name`"><a href="">{{api.name}}</a></div>
+      <div :class="`${css}__name`">
+        <router-link :to="{ name: 'myapi-edit', params: { id: api.id }}">{{api.name}}</router-link>
+      </div>
       <div :class="`${css}__url`">{{api.url}}</div>
       <div :class="`${css}__frequency`">{{api.polling_frequency}} {{api.polling_unit}}</div>
       <div :class="`${css}__action`">
-        <!-- Icon button -->
-        <button @click="goEdit(api.id)" class="mdl-button mdl-js-button mdl-button--icon">
-          <i class="material-icons">edit</i>
-        </button>
         <!-- Colored icon button -->
         <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
           <i class="material-icons">delete</i>
@@ -47,9 +45,9 @@
       const router = useRouter();
       const store = useStore();
 
-      const goEdit = (id) => {
-        router.push({ name: 'myapi-edit', params: { id: id } })
-      }
+      //const goEdit = (id) => {
+      //  router.push({ name: 'myapi-edit', params: { id: id } })
+      //}
 
 
       onMounted(() => {
@@ -59,7 +57,7 @@
 
       return {
         listOfApi,
-        goEdit,
+        //goEdit,
         css,
         store
       }
