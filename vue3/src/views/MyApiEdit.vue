@@ -114,15 +114,14 @@
         http_headers: "",
         query_params: ""
       })
+      const create = () => {
+        myapi.create(frm)
+        console.log(frm)
+      }
 
       onMounted(() => {
         site.setSite('Edit MyApi')
       })
-
-      function create() {
-        myapi.create(frm)
-        console.log(frm)
-      }
 
       return {
         frm,
