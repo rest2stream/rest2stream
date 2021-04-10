@@ -12,6 +12,7 @@
       :id="id" 
       :placeholder="placeholder"
       :value="modelValue"
+      :required="required"
       @input="$emit('update:modelValue', $event.target.value)"
     >
 
@@ -45,6 +46,9 @@
         },
         help: {
           type: String
+        },
+        required: {
+          type: Boolean
         }
       },
       setup(props) {
