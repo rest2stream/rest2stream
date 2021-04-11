@@ -1,5 +1,10 @@
 <template>
-  <form :class="css" @submit.prevent="create()">
+  <!--<form :class="css" @submit.prevent="create()">-->
+  <FormMain 
+    :class="css" 
+    v-model="frm" 
+    #default="{ isValid }" 
+    @submit.prevent="create()">
   {{frm}}
 
   {{store.state.myapi}}
@@ -11,6 +16,7 @@
         type="text"
         placeholder="Please enter text"
         v-model="frm.name"
+        required
       />
     </div>
 
@@ -75,12 +81,11 @@
     </div>
 
     <div :class="`${css}__button`">
-      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+      <button :disabled="!isValid" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
         Save
       </button>
     </div>
-
-  </form>
+  </FormMain>
 </template>
 
 <script>
@@ -92,12 +97,14 @@
   import FormInput  from '../components/FormInput.vue';
   import FormSelect  from '../components/FormSelect.vue';
   import FormTextarea  from '../components/FormTextarea.vue';
+  import FormMain  from '../components/FormMain.vue';
   export default {
     name: "MyApiEdit",
     components: {
       FormInput,
       FormSelect,
-      FormTextarea
+      FormTextarea,
+      FormMain
     },
     setup() {
       const router = useRouter();

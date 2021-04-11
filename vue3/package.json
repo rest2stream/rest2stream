@@ -6,6 +6,7 @@
     "build": "vite build"
   },
   "dependencies": {
+    "lodash": "^4.17.21",
     "vue": "^3.0.2",
     "vue-router": "^4.0.0-rc.1",
     "vuex": "^4.0.0"
