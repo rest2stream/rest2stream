@@ -1,88 +1,89 @@
 <template>
   <FormMain 
-    :class="css" 
     v-model="frm" 
     #default="{ isValid }" 
   >
-  {{frm}}
+    <div :class="css">
+      {{frm}}
 
-  {{store.state.myapi}}
+      {{store.state.myapi}}
 
-    <div :class="`${css}__name`">
-      <FormInput
-        id="name"
-        label="Name"
-        type="text"
-        placeholder="Please enter text"
-        v-model="frm.name"
-        required
-      />
-    </div>
+        <div :class="`${css}__name`">
+          <FormInput
+            id="name"
+            label="Name"
+            type="text"
+            placeholder="Please enter text"
+            v-model="frm.name"
+            required
+          />
+        </div>
 
-    <div :class="`${css}__desc`">
-      <FormInput
-        id="desc"
-        label="Desc"
-        type="text"
-        placeholder="Please enter desc"
-        v-model="frm.description"
-      />
-    </div>
+        <div :class="`${css}__desc`">
+          <FormInput
+            id="desc"
+            label="Desc"
+            type="text"
+            placeholder="Please enter desc"
+            v-model="frm.description"
+          />
+        </div>
 
-    <div :class="`${css}__url`">
-      <FormInput
-        id="url"
-        label="Url"
-        type="url"
-        placeholder="Please enter valid url"
-        v-model="frm.url"
-      />
-    </div>
+        <div :class="`${css}__url`">
+          <FormInput
+            id="url"
+            label="Url"
+            type="url"
+            placeholder="Please enter valid url"
+            v-model="frm.url"
+          />
+        </div>
 
-    <div :class="`${css}__frequency`">
-      <div>
-        <FormInput
-          id="frequency"
-          label="Frequency"
-          type="text"
-          placeholder="Polling frequency"
-          v-model="frm.polling_frequency"
-        />
-      </div>
-      <div>
-        <FormSelect 
-          v-model="frm.polling_unit"
-          id="unit"
-          :options="{ hours : 'hours', minutes: 'minutes', seconds: 'seconds' }"
-          help="This is a test"
-        />
-      </div>
-    </div>
+        <div :class="`${css}__frequency`">
+          <div>
+            <FormInput
+              id="frequency"
+              label="Frequency"
+              type="text"
+              placeholder="Polling frequency"
+              v-model="frm.polling_frequency"
+            />
+          </div>
+          <div>
+            <FormSelect 
+              v-model="frm.polling_unit"
+              id="unit"
+              :options="{ hours : 'hours', minutes: 'minutes', seconds: 'seconds' }"
+              help="This is a test"
+            />
+          </div>
+        </div>
 
-    <div :class="`${css}__headers`">
-      <FormTextarea
-        v-model="frm.http_headers"
-        id="headers"
-        label="HTTP Headers"
-        placeholder="Add Multiple HTTP headers in json format"
-        help="example: { Authorization: 'Basic AfgasdwQDU1dzByYM==' }"
-      />
-    </div>
+        <div :class="`${css}__headers`">
+          <FormTextarea
+            v-model="frm.http_headers"
+            id="headers"
+            label="HTTP Headers"
+            placeholder="Add Multiple HTTP headers in json format"
+            help="example: { Authorization: 'Basic AfgasdwQDU1dzByYM==' }"
+          />
+        </div>
 
-    <div :class="`${css}__query_params`">
-      <FormTextarea
-        v-model="frm.query_params"
-        id="query_params"
-        label="Query Params"
-        placeholder="Add Multiple Query params in json format"
-        help="example: { token : 'yzkg' }"
-      />
-    </div>
+        <div :class="`${css}__query_params`">
+          <FormTextarea
+            v-model="frm.query_params"
+            id="query_params"
+            label="Query Params"
+            placeholder="Add Multiple Query params in json format"
+            help="example: { token : 'yzkg' }"
+          />
+        </div>
 
-    <div :class="`${css}__button`">
-      <button @click.prevent="create()" :disabled="!isValid" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-        Save
-      </button>
+        <div :class="`${css}__button`">
+          <button @click.prevent="create()" :disabled="!isValid" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+            Save
+          </button>
+        </div>
     </div>
   </FormMain>
 </template>
