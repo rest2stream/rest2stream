@@ -1,6 +1,9 @@
 <template>
     {{modelValue}} 
-  <form ref="frm" novalidate>
+  <form  
+    ref="frm" 
+    novalidate
+  >
     <slot :isValid="isValid"/>
   </form>
 </template>
@@ -14,6 +17,9 @@
       modelValue: {
         type: Object,
         required: true
+      },
+      class: {
+        type: String,
       },
     },
     setup(props) {

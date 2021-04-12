@@ -1,10 +1,9 @@
 <template>
-  <!--<form :class="css" @submit.prevent="create()">-->
   <FormMain 
     :class="css" 
     v-model="frm" 
     #default="{ isValid }" 
-    @submit.prevent="create()">
+  >
   {{frm}}
 
   {{store.state.myapi}}
@@ -81,7 +80,7 @@
     </div>
 
     <div :class="`${css}__button`">
-      <button :disabled="!isValid" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+      <button @click.prevent="create()" :disabled="!isValid" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
         Save
       </button>
     </div>
