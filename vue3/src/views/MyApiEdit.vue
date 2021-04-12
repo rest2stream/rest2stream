@@ -93,10 +93,12 @@
   import useMyApi  from '../use/useMyApi';
   import { useRouter } from 'vue-router';
   import { useStore } from 'vuex';
-  import FormInput  from '../components/FormInput.vue';
-  import FormSelect  from '../components/FormSelect.vue';
-  import FormTextarea  from '../components/FormTextarea.vue';
-  import FormMain  from '../components/FormMain.vue';
+  import { 
+      FormInput, 
+      FormSelect, 
+      FormTextarea, 
+      FormMain 
+  } from '../components/forms';
   export default {
     name: "MyApiEdit",
     components: {
