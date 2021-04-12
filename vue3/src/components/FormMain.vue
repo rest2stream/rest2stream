@@ -4,7 +4,7 @@
     ref="frm" 
     novalidate
   >
-    <slot :isValid="isValid"/>
+    <slot :is_valid="isValid"/>
   </form>
 </template>
 
