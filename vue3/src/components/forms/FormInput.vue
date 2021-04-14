@@ -8,17 +8,14 @@
 
     <input 
       class="mdl-textfield__input"
-      :type="type" 
+      v-bind="$attrs"
       :id="id" 
-      :placeholder="placeholder"
       :value="modelValue"
-      :required="required"
-      :pattern="pattern"
       @input="$emit('update:modelValue', $event.target.value)"
       :validation_message="validationMessage"
     >
     <span v-if="validationMessage">{{validationMessage}}</span>
-    <span v-if="help">{{help}}</span>
+    <span v-if="help && !validationMessage">{{help}}</span>
   </div>
 
 </template>
@@ -35,24 +32,11 @@
           type: String,
           required: true,
         },
-        type: {
-          type: String,
-          required: true,
-        },
-        placeholder: { 
-          type: String,
-        },
         label: {
           type: String,
           required: true
         },
         help: {
-          type: String
-        },
-        required: {
-          type: Boolean
-        },
-        pattern: {
           type: String
         },
         validationMessage: {

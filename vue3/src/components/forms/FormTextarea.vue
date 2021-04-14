@@ -8,17 +8,13 @@
 
     <textarea 
       class="mdl-textfield__input"
-      :id="id" 
-      :placeholder="placeholder"
-      :rows="rows"
-      :cols="cols"
+      v-bind="$attrs"
+      :id="id"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
-      :validation_message="validationMessage"
     ></textarea>
-
     <span v-if="validationMessage">{{validationMessage}}</span>
-    <span v-if="help">{{help}}</span>
+    <span v-if="help && !validationMessage">{{help}}</span>
   </div>
 
 </template>
@@ -35,16 +31,6 @@
           type: String,
           required: true,
         },
-        placeholder: { 
-          type: String,
-        },
-        label: {
-          type: String,
-          required: true
-        },
-        help: {
-          type: String
-        },
         rows: {
           type: Number,
           default: 4
@@ -52,6 +38,12 @@
         cols: {
           type: Number,
           default: 30
+        },
+        label: {
+          type: String
+        },
+        help: {
+          type: String
         },
         validationMessage: {
           type: String

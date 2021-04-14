@@ -69,6 +69,8 @@
             label="HTTP Headers"
             placeholder="Add Multiple HTTP headers in json format"
             help="example: { Authorization: 'Basic AfgasdwQDU1dzByYM==' }"
+            required
+            :validationMessage="validationMessage.headers"
           />
         </div>
 
