@@ -1,10 +1,9 @@
 <template>
-    {{modelValue}} 
   <form  
     ref="frm" 
     novalidate
   >
-    <slot :is_valid="isValid"/>
+    <slot :isValid="isValid" :validationMessage="validationMessage"/>
   </form>
 </template>
 
@@ -23,16 +22,23 @@
       },
     },
     setup(props) {
-      let isValid = ref(false);
+      const isValid = ref(false);
+      const validationMessage = ref({}) //not able to set using reactive? need to further study
       const frm = ref(null)
 
       const validateForm = () => {
           //HTMLFormControlCollection does not have forEach
           let hasErrors = false;
+          console.log(frm)
+          validationMessage.value = {};
           Array.prototype.forEach.call(frm._value.elements, function(element) {
-            console.log(element.validity.valid);
             if (!element.validity.valid) {
               hasErrors = true
+              //console.log(element.id);
+              //console.log(element.validationMessage);
+              //console.log(element.validity.valid);
+              validationMessage.value[element.id] = element.validationMessage;
+              console.log(validationMessage.value)
             }
             isValid.value = !hasErrors;
           });
@@ -50,6 +56,7 @@
       return {
         frm,
         isValid,
+        validationMessage
       }
     }
   }

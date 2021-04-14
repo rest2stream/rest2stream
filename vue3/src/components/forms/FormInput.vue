@@ -14,8 +14,9 @@
       :value="modelValue"
       :required="required"
       @input="$emit('update:modelValue', $event.target.value)"
+      :validation_message="validationMessage"
     >
-
+    <span v-if="validationMessage">{{validationMessage}}</span>
     <span v-if="help">{{help}}</span>
   </div>
 
@@ -49,10 +50,12 @@
         },
         required: {
           type: Boolean
-        }
+        },
+        validationMessage: {
+          type: String
+        },
       },
       setup(props) {
-
       }
   }
 </script>

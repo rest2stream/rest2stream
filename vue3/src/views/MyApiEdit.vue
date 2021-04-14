@@ -1,7 +1,7 @@
 <template>
   <FormMain 
     v-model="frm" 
-    #default="{ isValid }" 
+    #default="{ isValid, validationMessage }" 
   >
     <div :class="css">
       {{frm}}
@@ -16,6 +16,7 @@
             placeholder="Please enter text"
             v-model="frm.name"
             required
+            :validationMessage="validationMessage.name"
           />
         </div>
 
@@ -26,6 +27,8 @@
             type="text"
             placeholder="Please enter desc"
             v-model="frm.description"
+            required
+            :validationMessage="validationMessage.desc"
           />
         </div>
 
