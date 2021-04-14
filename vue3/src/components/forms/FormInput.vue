@@ -13,6 +13,7 @@
       :placeholder="placeholder"
       :value="modelValue"
       :required="required"
+      :pattern="pattern"
       @input="$emit('update:modelValue', $event.target.value)"
       :validation_message="validationMessage"
     >
@@ -50,6 +51,9 @@
         },
         required: {
           type: Boolean
+        },
+        pattern: {
+          type: String
         },
         validationMessage: {
           type: String

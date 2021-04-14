@@ -14,8 +14,10 @@
       :cols="cols"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
+      :validation_message="validationMessage"
     ></textarea>
 
+    <span v-if="validationMessage">{{validationMessage}}</span>
     <span v-if="help">{{help}}</span>
   </div>
 
@@ -50,7 +52,10 @@
         cols: {
           type: Number,
           default: 30
-        }
+        },
+        validationMessage: {
+          type: String
+        },
       },
       setup(props) {
 
