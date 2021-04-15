@@ -2,6 +2,13 @@
 
   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
     <label 
+      v-if="id && !label" 
+      class="mdl-textfield__label"
+      :for="id"
+    >{{id}}</label>
+
+    <label 
+      v-if="id && label" 
       class="mdl-textfield__label"
       :for="id"
     >{{label}}</label>
@@ -20,6 +27,7 @@
 </template>
 
 <script>
+  import { inject, watchEffect, ref } from 'vue'
   export default {
       name: "FormTextarea",
       props: {
@@ -45,11 +53,22 @@
         help: {
           type: String
         },
-        validationMessage: {
-          type: String
-        },
+        //validationMessage: {
+        //  type: String
+        //},
       },
       setup(props) {
+        const frm = inject('__frmMain');
+        let validationMessage = ref('');
+
+        watchEffect(() => {
+          validationMessage.value = frm.validity.value[props.id];
+          //console.log(frm.validity.value[props.id], props.id);
+        })
+
+        return {
+          validationMessage
+        }
 
       }
   }

@@ -10,32 +10,27 @@
 
         <div :class="`${css}__name`">
           <FormInput
-            id="name"
-            label="Name"
+            id="Name"
             type="text"
             placeholder="Please enter text"
             v-model="frm.name"
             required
-            :validationMessage="validationMessage.name"
           />
         </div>
 
         <div :class="`${css}__desc`">
           <FormInput
-            id="desc"
-            label="Desc"
+            id="Desc"
             type="text"
             placeholder="Please enter desc"
             v-model="frm.description"
             required
-            :validationMessage="validationMessage.desc"
           />
         </div>
 
         <div :class="`${css}__url`">
           <FormInput
-            id="url"
-            label="Url"
+            id="Url"
             type="url"
             placeholder="Please enter valid url"
             v-model="frm.url"
@@ -45,8 +40,7 @@
         <div :class="`${css}__frequency`">
           <div>
             <FormInput
-              id="frequency"
-              label="Frequency"
+              id="Frequency"
               type="text"
               placeholder="Polling frequency"
               v-model="frm.polling_frequency"
@@ -70,7 +64,6 @@
             placeholder="Add Multiple HTTP headers in json format"
             help="example: { Authorization: 'Basic AfgasdwQDU1dzByYM==' }"
             required
-            :validationMessage="validationMessage.headers"
           />
         </div>
 
