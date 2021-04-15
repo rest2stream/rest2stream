@@ -3,7 +3,7 @@
     ref="frm" 
     novalidate
   >
-    <slot :isValid="isValid" :validationMessage="validationMessage"/>
+    <slot :isValid="isValid"/>
   </form>
 </template>
 

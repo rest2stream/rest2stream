@@ -1,7 +1,7 @@
 <template>
   <FormMain 
     v-model="frm" 
-    #default="{ isValid, validationMessage }" 
+    #default="{ isValid }" 
   >
     <div :class="css">
       {{frm}}
