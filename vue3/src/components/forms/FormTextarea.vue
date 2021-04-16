@@ -1,20 +1,19 @@
 <template>
 
-  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
     <label 
       v-if="id && !label" 
-      class="mdl-textfield__label"
+      :class="label_class"
       :for="id"
     >{{id}}</label>
 
     <label 
       v-if="id && label" 
-      class="mdl-textfield__label"
+      :class="label_class"
       :for="id"
     >{{label}}</label>
 
     <textarea 
-      class="mdl-textfield__input"
+      :class="textarea_class"
       v-bind="$attrs"
       :id="id"
       :value="modelValue"
@@ -22,7 +21,6 @@
     ></textarea>
     <span v-if="validationMessage">{{validationMessage}}</span>
     <span v-if="help && !validationMessage">{{help}}</span>
-  </div>
 
 </template>
 
@@ -51,6 +49,12 @@
           type: String
         },
         help: {
+          type: String
+        },
+        label_class: {
+          type: String
+        },
+        textarea_class: {
           type: String
         },
         //validationMessage: {

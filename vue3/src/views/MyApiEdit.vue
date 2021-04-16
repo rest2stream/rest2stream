@@ -9,72 +9,96 @@
       {{store.state.myapi}}
 
         <div :class="`${css}__name`">
-          <FormInput
-            id="Name"
-            type="text"
-            placeholder="Please enter text"
-            v-model="frm.name"
-            required
-          />
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <FormInput
+              label_class="mdl-textfield__label"
+              input_class="mdl-textfield__input"
+              id="Name"
+              type="text"
+              placeholder="Please enter text"
+              v-model="frm.name"
+              required
+            />
+          </div>
         </div>
 
         <div :class="`${css}__desc`">
-          <FormInput
-            id="Desc"
-            type="text"
-            placeholder="Please enter desc"
-            v-model="frm.description"
-            required
-          />
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <FormInput
+              label_class="mdl-textfield__label"
+              input_class="mdl-textfield__input"
+              id="Desc"
+              type="text"
+              placeholder="Please enter desc"
+              v-model="frm.description"
+              required
+            />
+          </div>
         </div>
 
         <div :class="`${css}__url`">
-          <FormInput
-            id="Url"
-            type="url"
-            placeholder="Please enter valid url"
-            v-model="frm.url"
-          />
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <FormInput
+              label_class="mdl-textfield__label"
+              input_class="mdl-textfield__input"
+              id="Url"
+              type="url"
+              placeholder="Please enter valid url"
+              v-model="frm.url"
+            />
+          </div>
         </div>
 
         <div :class="`${css}__frequency`">
-          <div>
-            <FormInput
-              id="Frequency"
-              type="text"
-              placeholder="Polling frequency"
-              v-model="frm.polling_frequency"
-            />
-          </div>
-          <div>
-            <FormSelect 
-              v-model="frm.polling_unit"
-              id="unit"
-              :options="{ hours : 'hours', minutes: 'minutes', seconds: 'seconds' }"
-              help="This is a test"
-            />
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <div>
+              <FormInput
+                label_class="mdl-textfield__label"
+                input_class="mdl-textfield__input"
+                id="Frequency"
+                type="text"
+                placeholder="Polling frequency"
+                v-model="frm.polling_frequency"
+              />
+            </div>
+            <div>
+              <FormSelect 
+                v-model="frm.polling_unit"
+                id="unit"
+                :options="{ hours : 'hours', minutes: 'minutes', seconds: 'seconds' }"
+                help="This is a test"
+              />
+            </div>
           </div>
         </div>
 
         <div :class="`${css}__headers`">
-          <FormTextarea
-            v-model="frm.http_headers"
-            id="headers"
-            label="HTTP Headers"
-            placeholder="Add Multiple HTTP headers in json format"
-            help="example: { Authorization: 'Basic AfgasdwQDU1dzByYM==' }"
-            required
-          />
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <FormTextarea
+              label_class="mdl-textfield__label"
+              textarea_class="mdl-textfield__input"
+              v-model="frm.http_headers"
+              id="headers"
+              label="HTTP Headers"
+              placeholder="Add Multiple HTTP headers in json format"
+              help="example: { Authorization: 'Basic AfgasdwQDU1dzByYM==' }"
+              required
+            />
+          </div>
         </div>
 
         <div :class="`${css}__query_params`">
-          <FormTextarea
-            v-model="frm.query_params"
-            id="query_params"
-            label="Query Params"
-            placeholder="Add Multiple Query params in json format"
-            help="example: { token : 'yzkg' }"
-          />
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <FormTextarea
+              label_class="mdl-textfield__label"
+              textarea_class="mdl-textfield__input"
+              v-model="frm.query_params"
+              id="query_params"
+              label="Query Params"
+              placeholder="Add Multiple Query params in json format"
+              help="example: { token : 'yzkg' }"
+            />
+          </div>
         </div>
 
         <div :class="`${css}__button`">
