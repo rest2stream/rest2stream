@@ -2,18 +2,18 @@
 
     <label 
       v-if="id && !label" 
-      :class="label_class"
+      :class="labelClass"
       :for="id"
     >{{id}}</label>
 
     <label 
       v-if="id && label" 
-      :class="label_class"
+      :class="labelClass"
       :for="id"
     >{{label}}</label>
 
     <textarea 
-      :class="textarea_class"
+      :class="textareaClass"
       v-bind="$attrs"
       :id="id"
       :value="modelValue"
@@ -51,10 +51,10 @@
         help: {
           type: String
         },
-        label_class: {
+        labelClass: {
           type: String
         },
-        textarea_class: {
+        textareaClass: {
           type: String
         },
         //validationMessage: {

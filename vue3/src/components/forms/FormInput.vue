@@ -2,18 +2,18 @@
 
     <label 
       v-if="id && !label" 
-      :class="label_class"
+      :class="labelClass"
       :for="id"
     >{{id}}</label>
 
     <label 
       v-if="id && label" 
-      :class="label_class"
+      :class="labelClass"
       :for="id"
     >{{label}}</label>
 
     <input 
-      :class="input_class"
+      :class="inputClass"
       v-bind="$attrs"
       :id="id" 
       :value="modelValue"
@@ -43,10 +43,10 @@
         help: {
           type: String
         },
-        label_class: {
+        labelClass: {
           type: String
         },
-        input_class: {
+        inputClass: {
           type: String
         },
         //validationMessage: {
