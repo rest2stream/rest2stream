@@ -2,18 +2,18 @@
 
     <label 
       v-if="id && !label" 
-      :class="labelClass"
+      :class="labelClass || styling.FormTextarea.labelClass"
       :for="id"
     >{{id}}</label>
 
     <label 
       v-if="id && label" 
-      :class="labelClass"
+      :class="labelClass || styling.FormTextarea.labelClass"
       :for="id"
     >{{label}}</label>
 
     <textarea 
-      :class="textareaClass"
+      :class="textareaClass || styling.FormTextarea.textareaClass"
       v-bind="$attrs"
       :id="id"
       :value="modelValue"
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-  import { inject, watchEffect, ref } from 'vue'
+  import { inject, watchEffect, ref, computed } from 'vue'
   export default {
       name: "FormTextarea",
       props: {
@@ -64,6 +64,7 @@
       setup(props) {
         const frm = inject('__frmMain');
         let validationMessage = ref('');
+        const styling = computed(() => frm.styling)
 
         watchEffect(() => {
           validationMessage.value = frm.validity.value[props.id];
@@ -71,7 +72,8 @@
         })
 
         return {
-          validationMessage
+          validationMessage,
+          styling
         }
 
       }

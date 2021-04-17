@@ -1,6 +1,16 @@
 <template>
   <FormMain 
     v-model="frm" 
+    :styling="{ 
+      FormInput: {
+        labelClass: 'mdl-textfield__label',
+        inputClass: 'mdl-textfield__input'
+      },
+      FormTextarea: {
+        labelClass: 'mdl-textfield__label',
+        textareaClass: 'mdl-textfield__input'
+      },
+    }"
     #default="{ isValid }" 
   >
     <div :class="css">
@@ -9,8 +19,6 @@
 
         <div :class="`${css}__name mdl-textfield mdl-js-textfield mdl-textfield--floating-label`">
           <FormInput
-            label-class="mdl-textfield__label"
-            input-class="mdl-textfield__input"
             id="Name"
             type="text"
             placeholder="Please enter text"
@@ -21,8 +29,6 @@
 
         <div :class="`${css}__desc mdl-textfield mdl-js-textfield mdl-textfield--floating-label`">
           <FormInput
-            label-class="mdl-textfield__label"
-            input-class="mdl-textfield__input"
             id="Desc"
             type="text"
             placeholder="Please enter desc"
@@ -33,8 +39,6 @@
 
         <div :class="`${css}__url mdl-textfield mdl-js-textfield mdl-textfield--floating-label`">
           <FormInput
-            label-class="mdl-textfield__label"
-            input-class="mdl-textfield__input"
             id="Url"
             type="url"
             placeholder="Please enter valid url"
@@ -45,8 +49,6 @@
         <div :class="`${css}__frequency mdl-textfield mdl-js-textfield mdl-textfield--floating-label`">
           <div>
             <FormInput
-              label-class="mdl-textfield__label"
-              input-class="mdl-textfield__input"
               id="Frequency"
               type="text"
               placeholder="Polling frequency"
@@ -55,6 +57,8 @@
           </div>
           <div>
             <FormSelect 
+              label-class='mdl-textfield__label'
+              select-class='mdl-textfield__input'
               v-model="frm.polling_unit"
               id="unit"
               :options="{ hours : 'hours', minutes: 'minutes', seconds: 'seconds' }"
@@ -65,8 +69,6 @@
 
         <div :class="`${css}__headers mdl-textfield mdl-js-textfield mdl-textfield--floating-label`">
           <FormTextarea
-            label-class="mdl-textfield__label"
-            textarea-class="mdl-textfield__input"
             v-model="frm.http_headers"
             id="headers"
             label="HTTP Headers"
@@ -78,8 +80,6 @@
 
         <div class="`${css}__query_params mdl-textfield mdl-js-textfield mdl-textfield--floating-label`">
           <FormTextarea
-            label-class="mdl-textfield__label"
-            textarea-class="mdl-textfield__input"
             v-model="frm.query_params"
             id="query_params"
             label="Query Params"
@@ -132,6 +132,18 @@
         http_headers: "",
         query_params: ""
       })
+    
+      //const styling = reactive({ 
+      //  FormInput: {
+      //    labelClass: 'mdl-textfield__label',
+      //    inputClass: 'mdl-textfield__input'
+      //  },
+      //  FormTextarea: {
+      //    labelClass: 'mdl-textfield__label',
+      //    textareaClass: 'mdl-textfield__input'
+      //  }
+      //});
+
       const create = () => {
         myapi.create(frm)
         console.log(frm)

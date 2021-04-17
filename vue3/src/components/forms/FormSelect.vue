@@ -1,13 +1,19 @@
 <template>
 
-  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
     <label 
-      class="mdl-textfield__label"
+      v-if="id && !label" 
+      :class="labelClass || styling.FormSelect?.labelClass"
+      :for="id"
+    >{{id}}</label>
+
+    <label 
+      v-if="id && label" 
+      :class="labelClass || styling.FormSelect?.labelClass"
       :for="id"
     >{{label}}</label>
 
     <select 
-      class="mdl-textfield__input"
+      :class="selectClass || styling.FormSelect?.selectClass"
       :value="modelValue"
       @change="$emit('update:modelValue', $event.target.value)"
     >
@@ -16,13 +22,14 @@
       >{{name}}</option>
     </select>
 
+    <span v-if="validationMessage">{{validationMessage}}</span>
     <span v-if="help">{{help}}</span>
-  </div>
   
 
 </template>
 
 <script>
+  import { inject, ref, computed, watchEffect } from 'vue';
   export default {
     name: "FormSelect",
     props: {
@@ -42,10 +49,30 @@
       },
       help: {
         type: String
+      },
+      selectClass: {
+        type: String
+      },
+      labelClass: {
+        type: String
       }
     },
-    setup() {
+    setup(props) {
+      const frm = inject('__frmMain');
+      let validationMessage = ref('');
+      const styling = computed(() => frm.styling)
 
+      console.log(styling)
+
+      watchEffect(() => {
+        validationMessage.value = frm.validity.value[props.id];
+        //console.log(frm.validity.value[props.id], props.id);
+      })
+
+      return {
+        validationMessage,
+        styling
+      }
     }
   }
 </script>

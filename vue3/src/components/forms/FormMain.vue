@@ -20,12 +20,16 @@
       class: {
         type: String,
       },
+      styling: {
+        type: Object,
+      },
     },
     setup(props) {
       const isValid = ref(false);
       const validationMessage = ref({}) //not able to set using reactive? need to further study
       const frm = ref(null)
-      provide('__frmMain', { form: props.modelValue, validity: validationMessage })
+      provide('__frmMain', { form: props.modelValue, 
+        validity: validationMessage, styling: props.styling })
 
       const validateForm = () => {
           //HTMLFormControlCollection does not have forEach

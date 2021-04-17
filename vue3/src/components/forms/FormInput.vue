@@ -2,18 +2,18 @@
 
     <label 
       v-if="id && !label" 
-      :class="labelClass"
+      :class="labelClass || styling.FormInput?.labelClass"
       :for="id"
     >{{id}}</label>
 
     <label 
       v-if="id && label" 
-      :class="labelClass"
+      :class="labelClass || styling.FormInput?.labelClass"
       :for="id"
     >{{label}}</label>
 
     <input 
-      :class="inputClass"
+      :class="inputClass || styling.FormInput?.inputClass"
       v-bind="$attrs"
       :id="id" 
       :value="modelValue"
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-  import { inject,  watchEffect, ref } from 'vue'
+  import { inject,  watchEffect, ref, computed } from 'vue'
   export default {
       name: "FormInput",
       props: {
@@ -56,6 +56,9 @@
       setup(props) {
         const frm = inject('__frmMain');
         let validationMessage = ref('');
+        const styling = computed(() => frm.styling)
+
+        console.log(styling)
 
         watchEffect(() => {
           validationMessage.value = frm.validity.value[props.id];
@@ -63,7 +66,8 @@
         })
 
         return {
-          validationMessage
+          validationMessage,
+          styling
         }
 
       }
