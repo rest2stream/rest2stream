@@ -1,6 +1,7 @@
 <template>
   <FormMain 
     v-model="frm" 
+    :class="css"
     :styling="{ 
       divClass: 'mdl-textfield mdl-js-textfield mdl-textfield--floating-label',
       labelClass: 'mdl-textfield__label',
@@ -12,34 +13,31 @@
 <!--      {{frm}}
       {{store.state.myapi}} -->
 
-        <div :class="`${css}__name`">
-          <FormInput
-            id="Name"
-            type="text"
-            placeholder="Please enter text"
-            v-model="frm.name"
-            required
-          />
-        </div>
+        <FormInput
+          :class="`${css}__name`"
+          id="Name"
+          type="text"
+          placeholder="Please enter text"
+          v-model="frm.name"
+          required
+        />
 
-        <div :class="`${css}__desc`">
-          <FormInput
-            id="Desc"
-            type="text"
-            placeholder="Please enter desc"
-            v-model="frm.description"
-            required
-          />
-        </div>
+        <FormInput
+          :class="`${css}__desc`"
+          id="Desc"
+          type="text"
+          placeholder="Please enter desc"
+          v-model="frm.description"
+          required
+        />
 
-        <div :class="`${css}__url`">
-          <FormInput
-            id="Url"
-            type="url"
-            placeholder="Please enter valid url"
-            v-model="frm.url"
-          />
-        </div>
+        <FormInput
+          :class="`${css}__url`"
+          id="Url"
+          type="url"
+          placeholder="Please enter valid url"
+          v-model="frm.url"
+        />
 
         <div :class="`${css}__frequency`">
           <div>
@@ -62,26 +60,24 @@
           </div>
         </div>
 
-        <div :class="`${css}__headers`">
-          <FormTextarea
-            v-model="frm.http_headers"
-            id="headers"
-            label="HTTP Headers"
-            placeholder="Add Multiple HTTP headers in json format"
-            help="example: { Authorization: 'Basic AfgasdwQDU1dzByYM==' }"
-            required
-          />
-        </div>
+        <FormTextarea
+          :class="`${css}__headers`"
+          v-model="frm.http_headers"
+          id="headers"
+          label="HTTP Headers"
+          placeholder="Add Multiple HTTP headers in json format"
+          help="example: { Authorization: 'Basic AfgasdwQDU1dzByYM==' }"
+          required
+        />
 
-        <div class="`${css}__query_params`">
-          <FormTextarea
-            v-model="frm.query_params"
-            id="query_params"
-            label="Query Params"
-            placeholder="Add Multiple Query params in json format"
-            help="example: { token : 'yzkg' }"
-          />
-        </div>
+        <FormTextarea
+          :class="`${css}__query_params`"
+          v-model="frm.query_params"
+          id="query_params"
+          label="Query Params"
+          placeholder="Add Multiple Query params in json format"
+          help="example: { token : 'yzkg' }"
+        />
 
         <div :class="`${css}__button`">
           <button @click.prevent="create()" :disabled="!isValid" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
