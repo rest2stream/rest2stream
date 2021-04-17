@@ -73,8 +73,6 @@
       let validationMessage = ref('');
       const styling = computed(() => frm.styling)
 
-      console.log(styling)
-
       watchEffect(() => {
         validationMessage.value = frm.validity.value[props.id];
         //console.log(frm.validity.value[props.id], props.id);

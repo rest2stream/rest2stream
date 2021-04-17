@@ -1,12 +1,16 @@
 <template>
   <FormMain 
     v-model="frm" 
-    :styling="{ 
+    :elements-styling="{ 
       divClass: 'mdl-textfield mdl-js-textfield mdl-textfield--floating-label',
       labelClass: 'mdl-textfield__label',
       elementsClass: 'mdl-textfield__input',
       validationClass: 'mdl-textfield__error',
       helpClass: 'help_text',
+    }"
+    :validation-message="{
+      patternMismatch: 'patternMismatch mismsatch???',
+      valueMissing: 'Missing value ??'
     }"
     #default="{ isValid }" 
   >
@@ -21,6 +25,7 @@
           placeholder="Please enter text"
           v-model="frm.name"
           required
+          pattern="a"
         />
 
         <FormInput
