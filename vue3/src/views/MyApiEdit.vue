@@ -1,11 +1,12 @@
 <template>
   <FormMain 
     v-model="frm" 
-    :class="css"
     :styling="{ 
       divClass: 'mdl-textfield mdl-js-textfield mdl-textfield--floating-label',
       labelClass: 'mdl-textfield__label',
-      elementsClass: 'mdl-textfield__input'
+      elementsClass: 'mdl-textfield__input',
+      validationClass: 'mdl-textfield__error',
+      helpClass: 'help_text',
     }"
     #default="{ isValid }" 
   >
@@ -50,8 +51,6 @@
           </div>
           <div>
             <FormSelect 
-              label-class='mdl-textfield__label'
-              select-class='mdl-textfield__input'
               v-model="frm.polling_unit"
               id="unit"
               :options="{ hours : 'hours', minutes: 'minutes', seconds: 'seconds' }"
@@ -201,6 +200,7 @@
       justify-self: right;
     }
   }
+
 
 
 </style>

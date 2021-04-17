@@ -23,8 +23,8 @@
       >{{name}}</option>
     </select>
 
-    <span v-if="validationMessage">{{validationMessage}}</span>
-    <span v-if="help">{{help}}</span>
+    <span :class="validationClass || styling.FormSelect?.validationClass || styling.validationClass" v-if="validationMessage">{{validationMessage}}</span>
+    <span :class="helpClass || styling.FormSelect?.helpClass || styling.helpClass" v-if="help && !validationMessage">{{help}}</span>
   </div>
   
 
@@ -59,6 +59,12 @@
         type: String
       },
       divClass: {
+        type: String
+      },
+      validationClass: {
+        type: String
+      },
+      helpClass: {
         type: String
       },
     },

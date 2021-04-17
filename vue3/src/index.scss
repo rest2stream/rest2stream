@@ -19,26 +19,8 @@ label {
   display: block;
   margin-bottom: 5px;
 }
-/*
-@mixin select-input {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  width: 100%;
-  border: 1px solid #ddd;
-  font-size: 14px;
-  line-height: 38px \0;
-  margin-bottom: 2px;
-  outline: none;
-}
 
-select, input {
-  @include select-input();
-  height: 40px;
-  padding: 0 35px 0 10px;
+.help_text {
+  font-size: .87rem;
+  color:gray;
 }
-
-textarea {
-  @include select-input();
-}
-
-*/

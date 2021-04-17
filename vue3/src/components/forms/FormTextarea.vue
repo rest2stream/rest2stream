@@ -20,8 +20,8 @@
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
     ></textarea>
-    <span v-if="validationMessage">{{validationMessage}}</span>
-    <span v-if="help && !validationMessage">{{help}}</span>
+    <span :class="validationClass || styling.FormTextarea?.validationClass || styling.validationClass" v-if="validationMessage">{{validationMessage}}</span>
+    <span :class="helpClass || styling.FormInput?.helpClass || styling.helpClass" v-if="help && !validationMessage">{{help}}</span>
   </div>
 
 </template>
@@ -60,6 +60,12 @@
           type: String
         },
         divClass: {
+          type: String
+        },
+        validationClass: {
+          type: String
+        },
+        helpClass: {
           type: String
         },
         //validationMessage: {
