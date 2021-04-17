@@ -1,19 +1,20 @@
 <template>
 
+  <div :class="divClass || styling.FormInput?.divClass || styling.divClass">
     <label 
       v-if="id && !label" 
-      :class="labelClass || styling.FormInput?.labelClass"
+      :class="labelClass || styling.FormInput?.labelClass || styling.labelClass"
       :for="id"
     >{{id}}</label>
 
     <label 
       v-if="id && label" 
-      :class="labelClass || styling.FormInput?.labelClass"
+      :class="labelClass || styling.FormInput?.labelClass || styling.labelClass"
       :for="id"
     >{{label}}</label>
 
     <input 
-      :class="inputClass || styling.FormInput?.inputClass"
+      :class="inputClass || styling.FormInput?.inputClass || styling.elementsClass"
       v-bind="$attrs"
       :id="id" 
       :value="modelValue"
@@ -21,6 +22,7 @@
     >
     <span v-if="validationMessage">{{validationMessage}}</span>
     <span v-if="help && !validationMessage">{{help}}</span>
+  </div>
 
 </template>
 
@@ -47,6 +49,9 @@
           type: String
         },
         inputClass: {
+          type: String
+        },
+        divClass: {
           type: String
         },
         //validationMessage: {

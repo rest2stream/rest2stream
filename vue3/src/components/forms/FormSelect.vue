@@ -1,19 +1,20 @@
 <template>
 
+  <div :class="divClass || styling.FormSelect?.divClass || styling.divClass">
     <label 
       v-if="id && !label" 
-      :class="labelClass || styling.FormSelect?.labelClass"
+      :class="labelClass || styling.FormSelect?.labelClass || styling.labelClass"
       :for="id"
     >{{id}}</label>
 
     <label 
       v-if="id && label" 
-      :class="labelClass || styling.FormSelect?.labelClass"
+      :class="labelClass || styling.FormSelect?.labelClass || styling.labelClass"
       :for="id"
     >{{label}}</label>
 
     <select 
-      :class="selectClass || styling.FormSelect?.selectClass"
+      :class="selectClass || styling.FormSelect?.selectClass || styling.elementsClass"
       :value="modelValue"
       @change="$emit('update:modelValue', $event.target.value)"
     >
@@ -24,6 +25,7 @@
 
     <span v-if="validationMessage">{{validationMessage}}</span>
     <span v-if="help">{{help}}</span>
+  </div>
   
 
 </template>
@@ -55,7 +57,10 @@
       },
       labelClass: {
         type: String
-      }
+      },
+      divClass: {
+        type: String
+      },
     },
     setup(props) {
       const frm = inject('__frmMain');

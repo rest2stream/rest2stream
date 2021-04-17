@@ -2,14 +2,9 @@
   <FormMain 
     v-model="frm" 
     :styling="{ 
-      FormInput: {
-        labelClass: 'mdl-textfield__label',
-        inputClass: 'mdl-textfield__input'
-      },
-      FormTextarea: {
-        labelClass: 'mdl-textfield__label',
-        textareaClass: 'mdl-textfield__input'
-      },
+      divClass: 'mdl-textfield mdl-js-textfield mdl-textfield--floating-label',
+      labelClass: 'mdl-textfield__label',
+      elementsClass: 'mdl-textfield__input'
     }"
     #default="{ isValid }" 
   >
@@ -17,7 +12,7 @@
 <!--      {{frm}}
       {{store.state.myapi}} -->
 
-        <div :class="`${css}__name mdl-textfield mdl-js-textfield mdl-textfield--floating-label`">
+        <div :class="`${css}__name`">
           <FormInput
             id="Name"
             type="text"
@@ -27,7 +22,7 @@
           />
         </div>
 
-        <div :class="`${css}__desc mdl-textfield mdl-js-textfield mdl-textfield--floating-label`">
+        <div :class="`${css}__desc`">
           <FormInput
             id="Desc"
             type="text"
@@ -37,7 +32,7 @@
           />
         </div>
 
-        <div :class="`${css}__url mdl-textfield mdl-js-textfield mdl-textfield--floating-label`">
+        <div :class="`${css}__url`">
           <FormInput
             id="Url"
             type="url"
@@ -46,7 +41,7 @@
           />
         </div>
 
-        <div :class="`${css}__frequency mdl-textfield mdl-js-textfield mdl-textfield--floating-label`">
+        <div :class="`${css}__frequency`">
           <div>
             <FormInput
               id="Frequency"
@@ -67,7 +62,7 @@
           </div>
         </div>
 
-        <div :class="`${css}__headers mdl-textfield mdl-js-textfield mdl-textfield--floating-label`">
+        <div :class="`${css}__headers`">
           <FormTextarea
             v-model="frm.http_headers"
             id="headers"
@@ -78,7 +73,7 @@
           />
         </div>
 
-        <div class="`${css}__query_params mdl-textfield mdl-js-textfield mdl-textfield--floating-label`">
+        <div class="`${css}__query_params`">
           <FormTextarea
             v-model="frm.query_params"
             id="query_params"

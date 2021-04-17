@@ -1,19 +1,20 @@
 <template>
 
+  <div :class="divClass || styling.FormTextarea?.divClass || styling.divClass">
     <label 
       v-if="id && !label" 
-      :class="labelClass || styling.FormTextarea.labelClass"
+      :class="labelClass || styling.FormTextarea?.labelClass || styling.labelClass"
       :for="id"
     >{{id}}</label>
 
     <label 
       v-if="id && label" 
-      :class="labelClass || styling.FormTextarea.labelClass"
+      :class="labelClass || styling.FormTextarea?.labelClass || styling.labelClass"
       :for="id"
     >{{label}}</label>
 
     <textarea 
-      :class="textareaClass || styling.FormTextarea.textareaClass"
+      :class="textareaClass || styling.FormTextarea?.textareaClass || styling.elementsClass"
       v-bind="$attrs"
       :id="id"
       :value="modelValue"
@@ -21,6 +22,7 @@
     ></textarea>
     <span v-if="validationMessage">{{validationMessage}}</span>
     <span v-if="help && !validationMessage">{{help}}</span>
+  </div>
 
 </template>
 
@@ -55,6 +57,9 @@
           type: String
         },
         textareaClass: {
+          type: String
+        },
+        divClass: {
           type: String
         },
         //validationMessage: {
