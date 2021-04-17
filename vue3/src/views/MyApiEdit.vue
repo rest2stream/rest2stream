@@ -5,7 +5,7 @@
       divClass: 'mdl-textfield mdl-js-textfield mdl-textfield--floating-label',
       labelClass: 'mdl-textfield__label',
       elementsClass: 'mdl-textfield__input',
-      validationClass: 'mdl-textfield__error',
+      validationClass: 'validation_error',
       helpClass: 'help_text',
     }"
     :validation-message="{
@@ -15,8 +15,15 @@
     #default="{ isValid }" 
   >
     <div :class="css">
-<!--      {{frm}}
+      <!-- {{frm}}
       {{store.state.myapi}} -->
+      <!-- how to add individual custom validation?
+          :validation-custom="{
+            foundElle: (value) => ['elle'].includes(value)
+          }"
+          :validation-message="{
+            foundElle: 'Oh no! message contains Elle??'
+          }" -->
 
         <FormInput
           :class="`${css}__name`"
@@ -127,6 +134,7 @@
         http_headers: "",
         query_params: ""
       })
+
     
       //const styling = reactive({ 
       //  FormInput: {
@@ -152,7 +160,7 @@
         frm,
         css,
         create,
-        store
+        store,
       }
     }
   }

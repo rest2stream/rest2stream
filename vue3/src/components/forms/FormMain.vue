@@ -65,6 +65,19 @@
         styling: props.elementsStyling, 
       })
 
+      const setCustomValidationMsg = (element) => {
+        // set custom validation message
+        if (props.validationMessage) {
+          for (const [k, v] of Object.entries(props.validationMessage)) { 
+            if (element.validity[k]) {
+              validationMessage.value[element.id] = v;
+              return;
+            }
+          }
+        }
+        // set custom validation message
+      }
+
       const validateForm = () => {
           //HTMLFormControlCollection does not have forEach
           let hasErrors = false;
@@ -73,22 +86,14 @@
           //console.log(props.validationMessage)
           //console.log(frm)
           Array.prototype.forEach.call(frm._value.elements, function(element) {
-            if (!element.validity.valid) {
+            //element.setCustomValidity('afgag')
+            if (!element.checkValidity()) {
               hasErrors = true
               //console.log(element.id);
               //console.log(element.validationMessage);
               //console.log(element.validity);
 
-              // set custom validation message
-              if (props.validationMessage) {
-                for (const [k, v] of Object.entries(props.validationMessage)) { 
-                  if (element.validity[k]) {
-                    validationMessage.value[element.id] = v;
-                    return;
-                  }
-                }
-              }
-              // set custom validation message
+              setCustomValidationMsg(element);
 
               if (!validationMessage.value[element.id]) {
                 validationMessage.value[element.id] = element.validationMessage;

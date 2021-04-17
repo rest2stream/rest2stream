@@ -23,15 +23,15 @@
       >{{name}}</option>
     </select>
 
-    <span :class="validationClass || styling.FormSelect?.validationClass || styling.validationClass" v-if="validationMessage">{{validationMessage}}</span>
-    <span :class="helpClass || styling.FormSelect?.helpClass || styling.helpClass" v-if="help && !validationMessage">{{help}}</span>
+    <span :class="validationClass || styling.FormSelect?.validationClass || styling.validationClass" v-if="valMsg">{{valMsg}}</span>
+    <span :class="helpClass || styling.FormSelect?.helpClass || styling.helpClass" v-if="help && !valMsg">{{help}}</span>
   </div>
   
 
 </template>
 
 <script>
-  import { inject, ref, computed, watchEffect } from 'vue';
+  import { inject, toRefs, ref, computed, watch } from 'vue';
   export default {
     name: "FormSelect",
     props: {
@@ -67,19 +67,41 @@
       helpClass: {
         type: String
       },
+      validationCustom: {
+        type: Object,
+      },
+      validationMessage: {
+        type: Object
+      },
     },
     setup(props) {
       const frm = inject('__frmMain');
-      let validationMessage = ref('');
+      let valMsg = ref('');
       const styling = computed(() => frm.styling)
+      const { modelValue } = toRefs(props)
 
-      watchEffect(() => {
-        validationMessage.value = frm.validity.value[props.id];
-        //console.log(frm.validity.value[props.id], props.id);
+      const setCustomValMsgInput = (newVal) => {
+        // only apply for individual custom validation msg
+        if (props.validationCustom) {
+          for (const [k, v] of Object.entries(props.validationMessage)) {
+            if (props.validationCustom[k](newVal)) {
+              valMsg.value = v
+              console.log('select hours', v)
+            }
+          }
+        }
+      }
+
+      watch(frm.validity, (newVal, oldVal) => {
+        valMsg.value = frm.validity.value[props.id];
+      }) 
+
+      watch(modelValue, (newVal, oldVal) => {
+        setCustomValMsgInput(newVal);
       })
 
       return {
-        validationMessage,
+        valMsg,
         styling
       }
     }
