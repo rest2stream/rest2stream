@@ -1,6 +1,6 @@
 import { watch, onMounted, inject,  toRefs, ref, computed } from 'vue'
 
-export default function useForm(props) {
+export function useForm(props) {
   const frm = inject('__frmMain');
   let valMsg = ref('');
   const styling = computed(() => frm.styling)
@@ -31,3 +31,60 @@ export default function useForm(props) {
   }
 
 }
+
+export const props1 = {
+      modelValue: {
+        type: String,
+        required: true
+      },
+      id: {
+        type: String,
+        required: true,
+      },
+      label: {
+        type: String,
+      },
+      help: {
+        type: String
+      },
+      rows: {
+        type: Number,
+        default: 4
+      },
+      cols: {
+        type: Number,
+        default: 30
+      },
+      textareaClass: {
+        type: String
+      },
+      options: {
+        type: Object
+      },
+      selectClass: {
+        type: String
+      },
+      labelClass: {
+        type: String
+      },
+      inputClass: {
+        type: String
+      },
+      divClass: {
+        type: String
+      },
+      validationClass: {
+        type: String
+      },
+      helpClass: {
+        type: String
+      },
+      validationCustom: {
+        type: Object,
+      },
+      validationMessage: {
+        type: Object
+      }
+  }
+
+  export default { props1, useForm }

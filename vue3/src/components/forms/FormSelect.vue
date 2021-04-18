@@ -17,6 +17,7 @@
       :class="selectClass || styling.FormSelect?.selectClass || styling.elementsClass"
       :value="modelValue"
       @change="$emit('update:modelValue', $event.target.value)"
+      v-bind="$attrs"
     >
       <option 
         v-for="(name, value) in options" :value="value"
@@ -31,49 +32,10 @@
 </template>
 
 <script>
-  import useForm  from '../../use/useForm';
+  import { useForm, props1 }  from '../../use/useForm';
   export default {
     name: "FormSelect",
-    props: {
-      modelValue: {
-        type: String,
-        required: true
-      },
-      id: {
-        type: String,
-        required: true,
-      },
-      label: {
-        type: String
-      },
-      options: {
-        type: Object
-      },
-      help: {
-        type: String
-      },
-      selectClass: {
-        type: String
-      },
-      labelClass: {
-        type: String
-      },
-      divClass: {
-        type: String
-      },
-      validationClass: {
-        type: String
-      },
-      helpClass: {
-        type: String
-      },
-      validationCustom: {
-        type: Object,
-      },
-      validationMessage: {
-        type: Object
-      },
-    },
+    props: props1,
     setup(props) {
       const { valMsg, styling } = useForm(props);
 

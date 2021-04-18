@@ -27,54 +27,10 @@
 </template>
 
 <script>
-  import useForm  from '../../use/useForm';
+  import { useForm, props1 }  from '../../use/useForm';
   export default {
       name: "FormTextarea",
-      props: {
-        modelValue: {
-          type: String,
-          required: true
-        },
-        id: {
-          type: String,
-          required: true,
-        },
-        rows: {
-          type: Number,
-          default: 4
-        },
-        cols: {
-          type: Number,
-          default: 30
-        },
-        label: {
-          type: String
-        },
-        help: {
-          type: String
-        },
-        labelClass: {
-          type: String
-        },
-        textareaClass: {
-          type: String
-        },
-        divClass: {
-          type: String
-        },
-        validationClass: {
-          type: String
-        },
-        helpClass: {
-          type: String
-        },
-        validationCustom: {
-          type: Object,
-        },
-        validationMessage: {
-          type: Object
-        },
-      },
+      props: props1,
       setup(props) {
         const { valMsg, styling } = useForm(props);
 
