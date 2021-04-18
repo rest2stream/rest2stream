@@ -57,31 +57,34 @@
     },
     setup(props) {
       const isValid = ref(false);
-      const validationMessage = ref({}) //not able to set using reactive? need to further study
+      const valMsg = ref({}) //not able to set using reactive? need to further study
       const frm = ref(null)
       provide('__frmMain', { 
-        form: props.modelValue, 
-        validity: validationMessage, 
+        frm: frm, 
+        validity: valMsg, 
         styling: props.elementsStyling, 
       })
 
-      const setCustomValidationMsg = (element) => {
-        // set custom validation message
+      const setValidationMsg = (element) => {
         if (props.validationMessage) {
+          // set local form custom validation message
           for (const [k, v] of Object.entries(props.validationMessage)) { 
             if (element.validity[k]) {
-              validationMessage.value[element.id] = v;
+              valMsg.value[element.id] = v;
               return;
             }
           }
+          // set local form custom validation message
+        } else if (!valMsg.value[element.id]) {
+          // use es6 form built in validation msg
+          valMsg.value[element.id] = element.validationMessage;
         }
-        // set custom validation message
       }
 
       const validateForm = () => {
           //HTMLFormControlCollection does not have forEach
           let hasErrors = false;
-          validationMessage.value = {};
+          valMsg.value = {};
 
           //console.log(props.validationMessage)
           //console.log(frm)
@@ -93,11 +96,8 @@
               //console.log(element.validationMessage);
               //console.log(element.validity);
 
-              setCustomValidationMsg(element);
+              setValidationMsg(element);
 
-              if (!validationMessage.value[element.id]) {
-                validationMessage.value[element.id] = element.validationMessage;
-              }
               //console.log(validationMessage.value)
             }
             isValid.value = !hasErrors;
@@ -116,7 +116,7 @@
       return {
         frm,
         isValid,
-        validationMessage
+        valMsg
       }
     }
   }

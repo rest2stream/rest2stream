@@ -6,7 +6,7 @@ export function useForm(props) {
   const styling = computed(() => frm.styling)
   const { modelValue } = toRefs(props)
 
-  const setCustomValMsgInput = (newVal) => {
+  const setCustomRulesAndValMsg = (newVal) => {
     // only apply for individual custom validation msg
     if (props.validationCustom) {
       for (const [k, v] of Object.entries(props.validationMessage)) {
@@ -17,12 +17,30 @@ export function useForm(props) {
     }
   }
 
+  const setValMsg = () => {
+    valMsg.value = '';
+    if (props.validationMessage && !props.validationCustom) {
+      Array.prototype.forEach.call(frm.frm._value.elements, function(element) {
+        for (const [k, v] of Object.entries(props.validationMessage)) {
+          if (element.validity[k]) {
+            //console.log(element.validity[k], k, v)
+            valMsg.value = v
+            return;
+          }
+        }
+      })
+    }
+    if (!valMsg.value) {
+      valMsg.value = frm.validity.value[props.id];
+    }
+  }
+
   watch(frm.validity, (newVal, oldVal) => {
-    valMsg.value = frm.validity.value[props.id];
+    setValMsg()
   }) 
 
   watch(modelValue, (newVal, oldVal) => {
-    setCustomValMsgInput(newVal);
+    setCustomRulesAndValMsg(newVal);
   })
 
   return {
