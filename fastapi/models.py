@@ -13,5 +13,5 @@ class MyApis(models.Model):
     created_at = fields.DatetimeField(auto_now_add=True)
     modified_at = fields.DatetimeField(auto_now=True)
 
-MyApi_Pydantic = pydantic_model_creator(MyApis, name="MyApi")
-MyApisIn_Pydantic = pydantic_model_creator(MyApis, name="MyApiIn", exclude_readonly=True)
+MyApiPydantic = pydantic_model_creator(MyApis, name="MyApi")
+MyApisInPydantic = pydantic_model_creator(MyApis, name="MyApiIn", exclude_readonly=True)
