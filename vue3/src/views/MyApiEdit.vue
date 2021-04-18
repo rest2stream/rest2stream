@@ -8,10 +8,6 @@
       validationClass: 'validation_error',
       helpClass: 'help_text',
     }"
-    :validation-message="{
-      patternMismatch: 'patternMismatch mismsatch???',
-      valueMissing: 'Missing value ??'
-    }"
     #default="{ isValid }" 
   >
     <div :class="css">
@@ -32,7 +28,6 @@
           placeholder="Please enter text"
           v-model="frm.name"
           required
-          pattern="a"
         />
 
         <FormInput
@@ -41,7 +36,6 @@
           type="text"
           placeholder="Please enter desc"
           v-model="frm.description"
-          required
         />
 
         <FormInput
@@ -50,15 +44,18 @@
           type="url"
           placeholder="Please enter valid url"
           v-model="frm.url"
+          required
         />
 
         <div :class="`${css}__frequency`">
           <div>
             <FormInput
               id="Frequency"
-              type="text"
+              type="number"
               placeholder="Polling frequency"
               v-model="frm.polling_frequency"
+              min="1"
+              required
             />
           </div>
           <div>
@@ -78,7 +75,6 @@
           label="HTTP Headers"
           placeholder="Add Multiple HTTP headers in json format"
           help="example: { Authorization: 'Basic AfgasdwQDU1dzByYM==' }"
-          required
         />
 
         <FormTextarea
