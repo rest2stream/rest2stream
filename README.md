@@ -1,4 +1,4 @@
-# fastapi-rest2stream
+# rest2stream
 Rest API 2 Stream data (RATS) 🐀  a web service that can help developers convert their Rest API into a stream of real-time data. 
 
 ## MyApi Configuration Screenshot
