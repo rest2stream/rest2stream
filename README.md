@@ -36,7 +36,7 @@ npm run dev
 ### Inspiration
 #### StreamData IO
 
-#####https://github.com/streamdataio
+<a href="https://github.com/streamdataio" target="_blank"><img src="https://avatars.githubusercontent.com/u/5525960?s=200&v=4"></a>
 
 [Youtube](https://www.youtube.com/watch?v=oEyZktQUvFw)<br/>
 [Youtube](https://www.youtube.com/watch?v=gYJPO3vd-hs&t=12s)
