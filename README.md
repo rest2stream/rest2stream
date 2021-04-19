@@ -1,11 +1,6 @@
 # fastapi-rest2stream
 Rest API 2 Stream data (RATS) 🐀  a web service that can help developers convert their Rest API into a stream of real-time data. 
 
-## Screenshot 
-
-![image](https://user-images.githubusercontent.com/3206118/97995850-0665fa80-1e22-11eb-9a83-1692525ff78c.png)
-
-
 ## MyApi Configuration Screenshot
 ![image](https://user-images.githubusercontent.com/3206118/115252611-326e0180-a15e-11eb-9df8-dd78fdb435a5.png)
 
@@ -17,10 +12,7 @@ Rest API 2 Stream data (RATS) 🐀  a web service that can help developers conve
 
 ## Installation (FastAPI Backend)
 ```
-python3 -m pip install fastapi
-python3 -m pip install uvicorn
-python3 -m pip install aiohttp
-python3 -m pip install jsonpatch
+python3 -m pip install fastapi uvicorn aiohttp jsonpatch
 ```
 
 ## How to run development server? (FastAPI Backend)
@@ -32,6 +24,7 @@ uvicorn main:app --reload
 ## Installation (Vue3 Frontend)
 ```
 npm install vue@next
+npm install vuex@next --save
 ```
 
 ## How to run development server? (Vue3 Frontend)
@@ -43,7 +36,9 @@ npm run dev
 ### Inspiration
 #### StreamData IO
 
-[Youtube](https://www.youtube.com/watch?v=oEyZktQUvFw)
+#####https://github.com/streamdataio
+
+[Youtube](https://www.youtube.com/watch?v=oEyZktQUvFw)<br/>
 [Youtube](https://www.youtube.com/watch?v=gYJPO3vd-hs&t=12s)
 
 
