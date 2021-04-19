@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from tortoise.contrib.fastapi import register_tortoise
 
-from routers import myapi
+from routers import myapi, stream
 
 app = FastAPI()
 
@@ -20,6 +20,7 @@ app.add_middleware(
 )
 
 app.include_router(myapi.router)
+app.include_router(stream.router)
 
 register_tortoise(
     app,
