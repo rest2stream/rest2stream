@@ -40,7 +40,19 @@ cd /home/{username}/fastapi-rest2stream/vu3
 npm run dev
 ```
 
-##Inspiration
-####StreamData IO
-https://www.youtube.com/watch?v=oEyZktQUvFw
-https://www.youtube.com/watch?v=gYJPO3vd-hs&t=12s
+### Inspiration
+#### StreamData IO
+
+[Youtube](https://www.youtube.com/watch?v=oEyZktQUvFw)
+[Youtube](https://www.youtube.com/watch?v=gYJPO3vd-hs&t=12s)
+
+
+### Help
+
+Need help? Open an issue in: [ISSUES](https://github.com/josnin/fastapi-rest2stream/issues)
+
+
+### Contributing
+Want to improve and add feature? Fork the repo, add your changes and send a pull request.
+
+
