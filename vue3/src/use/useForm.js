@@ -31,6 +31,7 @@ export function useForm(props) {
       })
     }
     if (!valMsg.value) {
+      //console.log(props.id, frm.validity.value[props.id], props.modelValue)
       valMsg.value = frm.validity.value[props.id];
     }
   }
@@ -52,8 +53,7 @@ export function useForm(props) {
 
 export const props1 = {
       modelValue: {
-        type: String,
-        required: true
+        type: [String, Number],
       },
       id: {
         type: String,

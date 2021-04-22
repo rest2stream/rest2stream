@@ -1,4 +1,5 @@
 <template>
+{{frm}}
   <FormMain 
     v-model="frm" 
     :elements-styling="{ 
@@ -96,10 +97,10 @@
 </template>
 
 <script>
-  import { onMounted, ref, reactive } from 'vue';
+  import { onMounted, ref, watchEffect } from 'vue';
   import useSite  from '../use/useSite';
   import useMyApi  from '../use/useMyApi';
-  import { useRouter } from 'vue-router';
+  import { useRoute } from 'vue-router';
   import { useStore } from 'vuex';
   import { 
       FormInput, 
@@ -115,14 +116,14 @@
       FormTextarea,
       FormMain
     },
-    setup() {
-      const router = useRouter();
+    async setup() {
+      const route = useRoute();
       const site = useSite();
       const myapi = useMyApi();
       const store = useStore();
       const css = ref('myapi-edit');
-      const frm = reactive({
-        name: "NBA Api",
+      const frm = ref({
+        name: "",
         description: "",
         url: "",
         polling_frequency: "",
@@ -131,7 +132,18 @@
         query_params: ""
       })
 
-    
+      watchEffect(() => {
+        const data = myapi.get(route.params.id);
+        if (data) {
+          frm.value = data;
+        }
+      })
+
+      onMounted(() => {
+        site.setSite('Edit MyApi')
+      })
+
+
       //const styling = reactive({ 
       //  FormInput: {
       //    labelClass: 'mdl-textfield__label',
@@ -143,20 +155,18 @@
       //  }
       //});
 
-      const create = () => {
-        myapi.create(frm)
+
+      const create = async () => {
+        await myapi.create(frm.value)
         console.log(frm)
       }
 
-      onMounted(() => {
-        site.setSite('Edit MyApi')
-      })
 
       return {
-        frm,
         css,
         create,
-        store,
+        frm,
+        store
       }
     }
   }

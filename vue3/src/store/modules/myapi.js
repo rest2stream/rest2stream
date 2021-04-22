@@ -5,7 +5,7 @@ import types from '../types'
 const myapi = {
   namespaced: true,
   state: {
-    myapi: []
+    myapi: [],
   },
   mutations: {
     [types.CREATE_MYAPI](state, obj) {
@@ -13,20 +13,23 @@ const myapi = {
     },
     [types.FETCH_MYAPI](state, obj) {
         state.myapi = obj;
-    }
+    },
   },
   actions: {
-    [types.CREATE_MYAPI]({ commit }, obj) {
-      http.post('http://localhost:8000/create-myapi', obj).then(data => {
-        console.log('Success:', data);
-        commit(types.CREATE_MYAPI, data)
-      })
+    async [types.CREATE_MYAPI]({ commit }, obj) {
+      const url = 'http://localhost:8000/create-myapi';
+      const data = await http.post(url, obj);
+      //console.log('Success:', data);
+      commit(types.CREATE_MYAPI, data)
+      return data
     },
-    [types.FETCH_MYAPI]({ commit }) {
-      http.get('http://localhost:8000/list-myapi').then(data => {
-        console.log('Success:', data);
-        commit(types.FETCH_MYAPI, data)
-      })
+    async [types.FETCH_MYAPI]({ commit } ) {
+      const url = "http://localhost:8000/list-myapi";
+      const data = await http.get(url)
+      commit(types.FETCH_MYAPI, data)
+      //console.log('Success:', data);
+      return data
+
     }
   }
 }

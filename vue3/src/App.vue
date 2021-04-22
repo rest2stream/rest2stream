@@ -30,7 +30,10 @@
           {{pageHeader}}
         </div>
         <div class="app__main">
-          <router-view />
+          <Suspense>
+            <template #default><router-view/></template>
+            <template #fallback>Loading...</template>
+          </Suspense>
         </div>
         <div class="app__footer">
             footer?
