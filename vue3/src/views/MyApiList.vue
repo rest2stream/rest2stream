@@ -32,7 +32,7 @@
   import { useStore } from 'vuex';
   export default {
     name: "MyApiList",
-    setup() {
+    async setup() {
       const css = ref('myapi-list')
       const listOfApi = computed(() => store.state.myapi.myapi);
       //const listOfApi = reactive([
@@ -45,15 +45,14 @@
       const router = useRouter();
       const store = useStore();
 
+      onMounted(() => {
+        site.setSite('MyApi');
+      })
+
       //const goEdit = (id) => {
       //  router.push({ name: 'myapi-edit', params: { id: id } })
       //}
-
-
-      onMounted(() => {
-        site.setSite('MyApi');
-        myapi.fetch();
-      })
+      await myapi.fetch()
 
       return {
         listOfApi,

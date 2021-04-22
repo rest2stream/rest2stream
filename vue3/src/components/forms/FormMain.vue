@@ -105,8 +105,12 @@
       }
 
       onMounted(() => {
-        validateForm()
+        // TODO: need completely load?? otherwise the validation msg show strange result?
+        setTimeout(() => {
+          validateForm()
+        }, 200);
       })
+
 
       watch( 
         () => _.cloneDeep(props.modelValue),

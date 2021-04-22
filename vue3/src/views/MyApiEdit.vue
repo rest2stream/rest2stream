@@ -132,12 +132,14 @@
         query_params: ""
       })
 
-      watchEffect(() => {
-        const data = myapi.get(route.params.id);
+      const stop = watchEffect(async () => {
+        const data = await myapi.get(route.params.id);
         if (data) {
           frm.value = data;
         }
       })
+      
+      stop(); // stop once data loaded
 
       onMounted(() => {
         site.setSite('Edit MyApi')
