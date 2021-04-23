@@ -13,6 +13,7 @@ const myapi = {
     },
     [types.FETCH_MYAPI](state, obj) {
         state.myapi = obj;
+        //sessionStorage.setItem('myapi', JSON.stringify(obj))
     },
   },
   actions: {
