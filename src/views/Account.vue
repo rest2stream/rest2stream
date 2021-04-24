@@ -1,4 +1,5 @@
 <template>
+aaaaaaaaaaaaaaa
 {{frm}}
   <FormMain 
     v-model="frm" 
@@ -96,12 +97,10 @@
   </FormMain>
 </template>
 
+
 <script>
-  import { onMounted, ref, watchEffect } from 'vue';
+  import { onMounted, ref } from 'vue'
   import useSite  from '../use/useSite';
-  import useMyApi  from '../use/useMyApi';
-  import { useRoute } from 'vue-router';
-  import { useStore } from 'vuex';
   import { 
       FormInput, 
       FormSelect, 
@@ -109,72 +108,37 @@
       FormMain 
   } from '../components/forms';
   export default {
-    name: "MyApiEdit",
+    name: "Account",
     components: {
-      FormInput,
-      FormSelect,
-      FormTextarea,
-      FormMain
+        FormInput,
+        FormSelect,
+        FormTextarea,
+        FormMain
     },
     async setup() {
-      const route = useRoute();
-      const site = useSite();
-      const myapi = useMyApi();
-      const store = useStore();
+      const frm = ref({})
       const css = ref('myapi-edit');
-      const frm = ref({
-        name: "",
-        description: "",
-        url: "",
-        polling_frequency: "",
-        polling_unit: "minutes",
-        http_headers: "",
-        query_params: ""
-      })
-
-      const stop = watchEffect(async () => {
-        const data = await myapi.get(route.params.id);
-        if (data) {
-          frm.value = data;
-        }
-      })
-      
-      stop(); // stop once data loaded
+      const site = useSite()
+      const url = `http://localhost:8000/myapi/1`
 
       onMounted(() => {
-        site.setSite('Edit MyApi')
+        console.log('mounted??',frm.value)
       })
 
-
-      //const styling = reactive({ 
-      //  FormInput: {
-      //    labelClass: 'mdl-textfield__label',
-      //    inputClass: 'mdl-textfield__input'
-      //  },
-      //  FormTextarea: {
-      //    labelClass: 'mdl-textfield__label',
-      //    textareaClass: 'mdl-textfield__input'
-      //  }
-      //});
-
-
-      const create = async () => {
-        await myapi.create(frm.value)
-        console.log(frm)
-      }
-
+      const response = await fetch(url);
+      frm.value = await response.json()
+      console.log(frm.value)
 
       return {
-        css,
-        create,
         frm,
-        store
+        css
       }
     }
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+
 
   .myapi-edit {
     display: grid;
