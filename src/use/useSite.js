@@ -5,12 +5,12 @@ export default function useSite() {
 
       const store = useStore()
 
-      function setSite(header) {
+      const set = (header) => {
         store.commit(`site/${types.SET_PAGE_HEADER}`, header)
       }
 
       return {
-          setSite
+        set
       }
 
 }

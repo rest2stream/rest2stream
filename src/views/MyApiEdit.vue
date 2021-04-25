@@ -148,7 +148,7 @@
       stop(); // stop once data loaded
 
       onMounted(() => {
-        site.setSite('Edit MyApi')
+        site.set('Edit MyApi')
       })
 
 

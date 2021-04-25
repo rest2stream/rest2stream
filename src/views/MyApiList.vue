@@ -27,8 +27,7 @@
 <script>
   import { onMounted, reactive, ref, computed } from 'vue';
   import useSite  from '../use/useSite';
-  import useMyApi  from '../use/useMyApi';
-  import { useRouter } from 'vue-router';
+  //import { useRouter } from 'vue-router';
   import { useStore } from 'vuex';
   export default {
     name: "MyApiList",
@@ -41,18 +40,16 @@
       //])
 
       const site = useSite();
-      const myapi = useMyApi();
-      const router = useRouter();
+      //const router = useRouter();
       const store = useStore();
 
       onMounted(() => {
-        site.setSite('MyApi');
+        site.set('MyApi');
       })
 
       //const goEdit = (id) => {
       //  router.push({ name: 'myapi-edit', params: { id: id } })
       //}
-      await myapi.fetch()
 
       return {
         listOfApi,

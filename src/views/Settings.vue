@@ -8,7 +8,7 @@
     name: "Settings",
     setup() {
       const site = useSite();
-      site.setSite('Settings')
+      site.set('Settings')
     }
   }
 </script>
