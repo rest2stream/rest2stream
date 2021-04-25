@@ -14,7 +14,7 @@
       <div :class="`${css}__frequency`">{{api.polling_frequency}} {{api.polling_unit}}</div>
       <div :class="`${css}__action`">
         <!-- Colored icon button -->
-        <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+        <button @click="remove(api.id)" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
           <i class="material-icons">delete</i>
         </button>
       </div>
@@ -26,36 +26,31 @@
 
 <script>
   import { onMounted, reactive, ref, computed } from 'vue';
-  import useSite  from '../use/useSite';
-  //import { useRouter } from 'vue-router';
   import { useStore } from 'vuex';
+  import useMyApi  from '../use/useMyApi';
+  import useSite  from '../use/useSite';
   export default {
     name: "MyApiList",
     async setup() {
       const css = ref('myapi-list')
       const listOfApi = computed(() => store.state.myapi.myapi);
-      //const listOfApi = reactive([
-      //  { id: 1, name: "NBA Sport Api", url: "https://api-sports/api/api-nba", polling_frequency: 5, polling_unit: "min."},
-      //  { id: 2, name: "API Football", url: "https://rapidapi.com/api-sports/api/api-football", polling_frequency: 5, polling_unit: "secs."}
-      //])
-
-      const site = useSite();
-      //const router = useRouter();
       const store = useStore();
+      const site = useSite();
+      const myapi = useMyApi();
 
       onMounted(() => {
         site.set('MyApi');
       })
 
-      //const goEdit = (id) => {
-      //  router.push({ name: 'myapi-edit', params: { id: id } })
-      //}
+      const remove = async (obj_id) => {
+        await myapi.remove(obj_id);
+      }
 
       return {
         listOfApi,
-        //goEdit,
         css,
-        store
+        store,
+        remove
       }
 
     }

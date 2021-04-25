@@ -8,7 +8,7 @@ export default function useMyApi() {
   const store = useStore()
   const create = async (obj) => await store.dispatch(`myapi/${types.CREATE_MYAPI}`, obj);
   const fetch = async() => await store.dispatch(`myapi/${types.FETCH_MYAPI}`);
-  //const fetch_byid = async (obj_id) => await store.dispatch(`myapi/${types.FETCH_MYAPI}`, obj_id);
+  const remove = async (obj_id) => await store.dispatch(`myapi/${types.REMOVE_MYAPI}`, obj_id);
   const refetch = async(obj_id) => {
     let data = await fetch();
     data = _.cloneDeep(data)
@@ -29,7 +29,8 @@ export default function useMyApi() {
   return {
     create,
     fetch,
-    get
+    get,
+    remove
   }
 
 }
