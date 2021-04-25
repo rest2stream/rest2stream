@@ -29,12 +29,6 @@
           placeholder="Please enter text"
           v-model="frm.name"
           required
-          :validation-custom="{
-            foundElle: (value) => ['elle'].includes(value)
-          }"
-          :validation-message="{
-            foundElle: 'Oh no! message contains Elle??'
-          }" 
         />
 
         <FormInput
