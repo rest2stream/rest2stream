@@ -100,7 +100,7 @@
   import { onMounted, ref, watchEffect } from 'vue';
   import useSite  from '../use/useSite';
   import useMyApi  from '../use/useMyApi';
-  import { useRoute } from 'vue-router';
+  import { useRoute, useRouter } from 'vue-router';
   import { useStore } from 'vuex';
   import { 
       FormInput, 
@@ -118,6 +118,7 @@
     },
     async setup() {
       const route = useRoute();
+      const router = useRouter();
       const site = useSite();
       const myapi = useMyApi();
       const store = useStore();
@@ -160,6 +161,7 @@
 
       const create = async () => {
         await myapi.create(frm.value)
+        router.push({ name: 'myapi-list' })
         console.log(frm)
       }
 
