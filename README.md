@@ -20,10 +20,10 @@ npm run dev
 ### Inspiration
 #### StreamData IO
 
-<a href="https://github.com/streamdataio" target="_blank"><img src="https://avatars.githubusercontent.com/u/5525960?s=200&v=4"></a>
+<a href="https://github.com/streamdataio" target="_blank"><img src="https://avatars.githubusercontent.com/u/5525960?s=200&v=4" width="60" style="object-fit: cover;"></a>
 
-[Youtube](https://www.youtube.com/watch?v=oEyZktQUvFw)<br/>
-[Youtube](https://www.youtube.com/watch?v=gYJPO3vd-hs&t=12s)
+* [https://www.youtube.com/watch?v=oEyZktQUvFw](https://www.youtube.com/watch?v=oEyZktQUvFw)<br/>
+* [https://www.youtube.com/watch?v=gYJPO3vd-hs&t=12s](https://www.youtube.com/watch?v=gYJPO3vd-hs&t=12s)
 
 
 ### Help
