@@ -21,14 +21,14 @@ const myapi = {
   },
   actions: {
     async [types.CREATE_MYAPI]({ commit }, obj) {
-      const url = 'http://localhost:8000/create-myapi';
+      const url = 'http://localhost:8000/myapi/create';
       const data = await http.post(url, obj);
       //console.log('Success:', data);
       commit(types.CREATE_MYAPI, data)
       return data
     },
     async [types.FETCH_MYAPI]({ commit } ) {
-      const url = "http://localhost:8000/list-myapi";
+      const url = "http://localhost:8000/myapi/list";
       const data = await http.get(url)
       commit(types.FETCH_MYAPI, data)
       //console.log('Success:', data);
