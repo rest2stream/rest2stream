@@ -4,35 +4,49 @@ import MyApiEdit from "../views/MyApiEdit.vue";
 import MyApiList from "../views/MyApiList.vue";
 import Settings from "../views/Settings.vue";
 import Account from "../views/Account.vue";
+import Login from "../views/Login.vue";
+import Layout from "../views/Layout.vue";
 
 const routes = [
   {
+    path: "/login/",
+    name: "login",
+    component: Login,
+  },
+  {
     path: "/",
-    name: "myapi",
-    component: MyApiIndex,
-    redirect: { name: "myapi-list"},
+    name: "layout",
+    component: Layout,
     children: [
       {
-        path: "/myapi/list",
-        name: "myapi-list",
-        component: MyApiList,
+        path: "/",
+        name: "myapi",
+        component: MyApiIndex,
+        redirect: { name: "myapi-list"},
+        children: [
+          {
+            path: "/myapi/list",
+            name: "myapi-list",
+            component: MyApiList,
+          },
+          {
+            path: "/myapi/edit/:id",
+            name: "myapi-edit",
+            component: MyApiEdit,
+          },
+        ]
       },
       {
-        path: "/myapi/edit/:id",
-        name: "myapi-edit",
-        component: MyApiEdit,
+        path: "/settings/",
+        name: "settings",
+        component: Settings,
+      },
+      {
+        path: "/account/",
+        name: "account",
+        component: Account,
       },
     ]
-  },
-  {
-    path: "/settings/",
-    name: "settings",
-    component: Settings,
-  },
-  {
-    path: "/account/",
-    name: "account",
-    component: Account,
   },
 ];
 
