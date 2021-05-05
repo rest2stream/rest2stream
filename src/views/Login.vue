@@ -1,22 +1,25 @@
 <template>
-  <div class="login">
-    <div class="login--box">
-      <form method="post">
-        <h3>Pls login!</h3>
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="text" id="id_username" name="username">
-            <label class="mdl-textfield__label" for="id_username">Username..</label>
-          </div>
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="password" id="id_password" name="password">
-            <label class="mdl-textfield__label" for="id_password">Password..</label>
-          </div>
-          <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
-              Login
-          </button>
-      </form>
+  <form method="post">
+    <div class="login-container">
+      <div class="box">
+            <h3 class="box__msg">Pls login!</h3>
+            <div class="box__user mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" id="id_username" name="username">
+              <label class="mdl-textfield__label" for="id_username">Username..</label>
+            </div>
+            <div class="box__pass mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="password" id="id_password" name="password">
+              <label class="mdl-textfield__label" for="id_password">Password..</label>
+            </div>
+            <button class="box__btn mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+                Login
+            </button>
+            <div class="box__others">
+              <a href="">Sign-in with Github</a>
+            </div>
+      </div>
     </div>
-  </div>
+  </form>
 </template>
 
 <script>
@@ -28,20 +31,52 @@
   }
 </script>
 
-<style lang="scss" >
+<style lang="scss" scoped>
 
-  .login {
-    display: grid;
-    height: 100vh;
-    align-items: center;
+.login-container {
+  display: grid;
+  height: 100vh;
+  align-items: center;
+}
+
+.box {
+  display: grid;
+  background-color: white ;
+  justify-self: center;
+  align-self: center;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  height: 400px;
+  width: 260px;
+  grid-template-areas: "msg"
+                       "user"
+                       "pass"
+                       "btn"
+                       "others";
+
+  &__msg {
+    grid-area: msg;
+    width: 100%;
   }
 
-  .login--box {
-    background-color: white ;
-    justify-self: center;
-    padding:2rem;
-    height: 350px;
-    width: 270px;
+  &__user {
+    grid-area: user;
+    width: 100%;
   }
+
+  &__pass {
+    grid-area: pass;
+    width: 100%;
+  }
+
+  &__btn {
+    grid-area: btn;
+    width: 40%;
+  }
+
+  &__others {
+    grid-area: others;
+  }
+}
 
 </style>
