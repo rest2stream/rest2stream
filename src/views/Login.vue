@@ -1,14 +1,14 @@
 <template>
-  <form method="post">
+  <form method="post" @submit.prevent="login()">
     <div class="login-container">
       <div class="box">
             <h3 class="box__msg">Pls login!</h3>
             <div class="box__user mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="text" id="id_username" name="username">
+              <input class="mdl-textfield__input" type="text" id="id_username" name="username" v-model="frm.username">
               <label class="mdl-textfield__label" for="id_username">Username..</label>
             </div>
             <div class="box__pass mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="password" id="id_password" name="password">
+              <input class="mdl-textfield__input" type="password" id="id_password" name="password" v-model="frm.password">
               <label class="mdl-textfield__label" for="id_password">Password..</label>
             </div>
             <button class="box__btn mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
@@ -23,9 +23,31 @@
 </template>
 
 <script>
+  import { onMounted, ref } from 'vue';
+  import { useStore } from 'vuex';
+  import useAuth  from '../use/useAuth';
   export default {
     name: "Login",
     setup() {
+      const store = useStore();
+      const auth = useAuth();
+      const frm = ref({
+        username: '',
+        password: '',
+      })
+
+      const login = () => {
+        let formData = new FormData();
+        formData.append('username', frm.value.username)
+        formData.append('password', frm.value.password)
+        auth.login(formData)
+      }
+
+      return {
+        login,
+        frm,
+        store
+      }
 
     }
   }

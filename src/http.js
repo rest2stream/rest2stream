@@ -7,8 +7,7 @@ async function post(url = '', data = {}, method='POST') {
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
     credentials: 'same-origin', // include, *same-origin, omit
     headers: {
-    'Content-Type': 'application/json'
-    // 'Content-Type': 'application/x-www-form-urlencoded',
+      'Content-Type': 'application/json',
     },
     redirect: 'follow', // manual, *follow, error
     referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
@@ -24,7 +23,16 @@ async function get(url ='') {
   return await response.json()
 }
 
+async function postForm(url ='', formData) {
+  const response = await fetch(url, {
+    method: 'POST',
+    body: formData,
+  });
+  return await response.json()
+}
+
 export default {
   post,
-  get
+  get,
+  postForm
 }
