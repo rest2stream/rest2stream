@@ -16,8 +16,7 @@ const auth = {
   },
   actions: {
     async [types.LOGIN]({ commit }, formData) {
-      const url = "http://localhost:8000/accounts/token";
-      const data = await http.postForm(url, formData);
+      const data = await http.postForm(import.meta.env.VITE_LOGIN_URL, formData);
       commit(types.LOGIN, data);
       return data;
     }
