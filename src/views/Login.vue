@@ -25,22 +25,27 @@
 <script>
   import { onMounted, ref } from 'vue';
   import { useStore } from 'vuex';
+  import { useRouter } from 'vue-router';
   import useAuth  from '@/use/useAuth';
   export default {
     name: "Login",
     setup() { 
       const store = useStore();
       const auth = useAuth();
+      const router = useRouter();
       const frm = ref({
         username: '',
         password: '',
       })
 
-      const login = () => {
+      const login = async () => {
         let formData = new FormData();
-        formData.append('username', frm.value.username)
-        formData.append('password', frm.value.password)
-        auth.login(formData)
+        formData.append('username', frm.value.username);
+        formData.append('password', frm.value.password);
+
+        await auth.login(formData);
+        await auth.getUser();
+        router.push({ name: 'myapi-list' });
       }
 
       return {

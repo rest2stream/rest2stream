@@ -1,3 +1,4 @@
+import store from '@/store'
 import { createWebHistory, createRouter } from "vue-router";
 import { 
   MyApiIndex,
@@ -9,16 +10,32 @@ import {
   Layout,
 } from "@/views";
 
+const isNotAuthenticated = (to, from, next) => {
+  if (!store.getters['auth/isAuthenticated']) {
+    next()
+  }
+  next('/')
+};
+
+const isAuthenticated = (to, from, next) => {
+  if (store.getters['auth/isAuthenticated']) {
+    next()
+  }
+  next({name:'login'})
+};
+
 const routes = [
   {
     path: "/login/",
     name: "login",
     component: Login,
+    beforeEnter: isNotAuthenticated,
   },
   {
     path: "/",
     name: "layout",
     component: Layout,
+    beforeEnter: isAuthenticated,
     children: [
       {
         path: "/",
@@ -42,11 +59,13 @@ const routes = [
         path: "/settings/",
         name: "settings",
         component: Settings,
+        beforeEnter: isAuthenticated,
       },
       {
         path: "/account/",
         name: "account",
         component: Account,
+        beforeEnter: isAuthenticated,
       },
     ]
   },

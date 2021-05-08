@@ -1,5 +1,4 @@
 <template>
-
   <div :class="`${css} mdl-typography--h6`">
     <div :class="`${css}__name`"><strong>Name</strong></div>
     <div :class="`${css}__url`"><strong>Url</strong></div>

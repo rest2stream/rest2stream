@@ -9,8 +9,8 @@
       <div class="mdl-layout-spacer"></div>
       <!-- Navigation. We hide it in small screens. -->
       <nav class="mdl-navigation mdl-layout--large-screen-only">
-        <a class="mdl-navigation__link" href=""><strong>Welcome user1!</strong></a>
-        <a class="mdl-navigation__link" href="">Logout</a>
+        <a class="mdl-navigation__link" href=""><strong>Welcome {{store.state.auth.user.username}}!</strong></a>
+        <a class="mdl-navigation__link" href="" @click.prevent="logout()">Logout</a>
       </nav>
     </div>
   </header>
@@ -46,16 +46,27 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue'
-import { useStore } from 'vuex'
-
+import { ref, computed } from 'vue';
+import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
+import useAuth from '@/use/useAuth';
 export default {
   name: 'Layout',
   setup() {
     const store = useStore();
+    const auth = useAuth();
+    const router = useRouter();
     const pageHeader = computed(() => store.state.site.page_header)
+
+    const logout = () => {
+      auth.logout();
+      router.push({ name: 'login' });
+    }
+
     return {
-      pageHeader
+      pageHeader,
+      store,
+      logout
     }
   }
 }
