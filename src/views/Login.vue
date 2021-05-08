@@ -2,7 +2,7 @@
   <form method="post" @submit.prevent="login()">
     <div class="login-container">
       <div class="box">
-            <h3 class="box__msg">Pls login!</h3>
+            <h4 class="box__msg">{{store.state.auth.status_msg || 'Please login!'}}</h4>
             <div class="box__user mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
               <input class="mdl-textfield__input" type="text" id="id_username" name="username" v-model="frm.username">
               <label class="mdl-textfield__label" for="id_username">Username..</label>
@@ -15,7 +15,7 @@
                 Login
             </button>
             <div class="box__others">
-              <a href="">Sign-in with Github</a>
+              <a :href="githubLogin">Sign-in with Github</a>
             </div>
       </div>
     </div>
@@ -23,7 +23,7 @@
 </template>
 
 <script>
-  import { onMounted, ref } from 'vue';
+  import { onMounted, ref, computed } from 'vue';
   import { useStore } from 'vuex';
   import { useRouter } from 'vue-router';
   import useAuth  from '@/use/useAuth';
@@ -33,6 +33,7 @@
       const store = useStore();
       const auth = useAuth();
       const router = useRouter();
+      const githubLogin = computed(() => import.meta.env.VITE_GITHUB_LOGIN_URL);
       const frm = ref({
         username: '',
         password: '',
@@ -51,7 +52,8 @@
       return {
         login,
         frm,
-        store
+        store,
+        githubLogin
       }
 
     }
