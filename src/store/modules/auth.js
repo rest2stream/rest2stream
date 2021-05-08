@@ -7,17 +7,17 @@ const auth = {
     token: null
   },
   mutations: {
-    [types.LOGIN](state, obj) {
+    [types.LOGIN_SUCCESS](state, obj) {
         state.token = obj.access_token;
     },
-    [types.LOGOUT](state, obj) {
+    [types.LOGOUT_SUCCESS](state, obj) {
         state.token = '';
     },
   },
   actions: {
-    async [types.LOGIN]({ commit }, formData) {
+    async [types.LOGIN_REQUEST]({ commit }, formData) {
       const data = await http.postForm(import.meta.env.VITE_LOGIN_URL, formData);
-      commit(types.LOGIN, data);
+      commit(types.LOGIN_SUCCESS, data);
       return data;
     }
   }
