@@ -25,10 +25,10 @@
 <script>
   import { onMounted, ref } from 'vue';
   import { useStore } from 'vuex';
-  import useAuth  from '../use/useAuth';
+  import useAuth  from '@/use/useAuth';
   export default {
     name: "Login",
-    setup() {
+    setup() { 
       const store = useStore();
       const auth = useAuth();
       const frm = ref({

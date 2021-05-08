@@ -27,8 +27,8 @@
 <script>
   import { onMounted, reactive, ref, computed } from 'vue';
   import { useStore } from 'vuex';
-  import useMyApi  from '../use/useMyApi';
-  import useSite  from '../use/useSite';
+  import useMyApi  from '@/use/useMyApi';
+  import useSite  from '@/use/useSite';
   export default {
     name: "MyApiList",
     async setup() {

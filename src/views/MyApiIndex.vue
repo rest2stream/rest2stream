@@ -5,7 +5,7 @@
 
 <script>
   import { useStore } from 'vuex';
-  import useMyApi  from '../use/useMyApi';
+  import useMyApi  from '@/use/useMyApi';
   export default {
     name: "MyApiIndex",
     async setup() {

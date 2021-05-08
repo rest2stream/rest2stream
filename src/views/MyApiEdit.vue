@@ -98,8 +98,8 @@
 
 <script>
   import { onMounted, ref, watchEffect } from 'vue';
-  import useSite  from '../use/useSite';
-  import useMyApi  from '../use/useMyApi';
+  import useSite  from '@/use/useSite';
+  import useMyApi  from '@/use/useMyApi';
   import { useRoute, useRouter } from 'vue-router';
   import { useStore } from 'vuex';
   import { 
@@ -107,7 +107,7 @@
       FormSelect, 
       FormTextarea, 
       FormMain 
-  } from '../components/forms';
+  } from '@/components/forms';
   export default {
     name: "MyApiEdit",
     components: {
