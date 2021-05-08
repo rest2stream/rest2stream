@@ -1,4 +1,4 @@
-import http from '../../http'
+//import http from '../../http'
 import types from '../types'
 
 const auth = {
@@ -6,6 +6,7 @@ const auth = {
   state: {
     token: null,
     status: null,
+    status_msg: null,
     user: {}
   },
   getters: {
@@ -17,35 +18,66 @@ const auth = {
     }
   },
   mutations: {
-    [types.LOGIN_SUCCESS](state, obj) {
-      state.status = 'success'
-      state.token = obj.access_token;
+    [types.LOGIN_OK](state, { status, data} ) {
+      state.status = status
+      state.status_msg = ''; // only applies for ERROR?
+      state.token = data.access_token;
+    },
+    [types.LOGIN_ERROR](state, { status, data}) {
+      state.status = status;
+      state.status_msg = data.detail;
+      state.user = {};
+      state.token = '';
     },
     [types.LOGOUT](state) {
       state.token = '';
       state.user = {};
       state.status = '';
+      state.status_msg = '';
     },
-    [types.GET_USER_INFO](state, obj) {
-      console.log(obj)
-      state.user = obj;
+    [types.GET_USER_INFO_OK](state, { status, data}) {
+      state.status = status
+      state.user = data;
+    },
+    [types.GET_USER_INFO_ERROR](state, { status, data}) {
+      state.status = status;
+      state.status_msg = data.detail;
+      state.user = {};
+      state.token = '';
     },
   },
   // TODO: use axios?
   actions: {
     async [types.LOGIN_REQUEST]({ commit }, formData) {
-      const data = await http.post(import.meta.env.VITE_LOGIN_URL, { formData, headers: {} });
-      commit(types.LOGIN_SUCCESS, data);
-      return data;
+      const response = await fetch(import.meta.env.VITE_LOGIN_URL, {
+        method: 'POST',
+        body: formData
+      });
+      const status = response.status;
+      const data = await response.json();
+      if (response.ok) {
+        console.log('login ok', data)
+        commit(types.LOGIN_OK, { status, data });
+      } else {
+        commit(types.LOGIN_ERROR, { status, data });
+      }
+      return { status, data };
     },
     async [types.GET_USER_INFO]({ commit, state }) {
-      const headers = {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${state.token}`
+      const response = await fetch(import.meta.env.VITE_ACCOUNTS_INFO_URL, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${state.token}`
+        }
+      });
+      const status = response.status;
+      const data = await response.json();
+      if (response.ok) {
+        commit(types.GET_USER_INFO_OK, { status, data });
+      } else {
+        commit(types.GET_USER_INFO_ERROR, { status, data });
       }
-      const data = await http.get(import.meta.env.VITE_ACCOUNTS_INFO_URL, { headers });
-      commit(types.GET_USER_INFO, data);
-      return data;
+      return { status, data };
     }
   }
 }

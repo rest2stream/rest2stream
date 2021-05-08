@@ -1,5 +1,5 @@
 
-import http from '../../http'
+//import http from '../../http'
 import types from '../types'
 
 const myapi = {
@@ -8,37 +8,58 @@ const myapi = {
     myapi: [],
   },
   mutations: {
-    [types.CREATE_MYAPI](state, obj) {
-        state.myapi.push(obj)
+    [types.CREATE_MYAPI](state, { status, data }) {
+        state.myapi.push(data)
     },
-    [types.FETCH_MYAPI](state, obj) {
-        state.myapi = obj;
-        //sessionStorage.setItem('myapi', JSON.stringify(obj))
+    [types.FETCH_MYAPI](state, { status, data} ) {
+        state.myapi = data;
+        //sessionStorage.setItem('myapi', JSON.stringify(data))
     },
-    [types.REMOVE_MYAPI](state, obj_id) {
+    [types.REMOVE_MYAPI](state, { status, obj_id } ) {
       state.myapi = state.myapi.filter(res => res.id != obj_id)
     },
   },
   actions: {
     async [types.CREATE_MYAPI]({ commit }, obj) {
-      console.log(obj)
-      const data = await http.post(import.meta.env.VITE_MYAPI_CREATE_URL, { data: obj });
-      //console.log('Success:', data);
-      commit(types.CREATE_MYAPI, data)
-      return data
+      const response = await fetch(import.meta.env.VITE_MYAPI_CREATE_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(obj)
+      });
+      const status = response.status;
+      const data = await response.json();
+      if (response.ok) {
+        commit(types.CREATE_MYAPI, { status, data })
+      } else {
+        // TODO: ??
+      }
+      return { status, data };
     },
     async [types.FETCH_MYAPI]({ commit } ) {
-      const data = await http.get(import.meta.env.VITE_MYAPI_LIST_URL)
-      commit(types.FETCH_MYAPI, data)
-      //console.log('Success:', data);
-      return data
+      const response = await fetch(import.meta.env.VITE_MYAPI_LIST_URL)
+      const status = response.status;
+      const data = await response.json();
+      if (response.ok) {
+        commit(types.FETCH_MYAPI, { status, data })
+      } else {
+        // TODO: ??
+      }
+      return { status, data };
     },
     async [types.REMOVE_MYAPI]({ commit }, obj_id ) {
-      const url = `${import.meta.env.VITE_MYAPI_URL}/${obj_id}`;
-      const data = await http.post(url, { method:'DELETE'})
-      commit(types.REMOVE_MYAPI, obj_id)
-      //console.log('Removed:', obj_id);
-      return data
+      const response = await fetch(`${import.meta.env.VITE_MYAPI_URL}/${obj_id}`, {
+        method: 'DELETE'
+      });
+      const status = response.status;
+      //const data = await response.json();
+      if (response.ok) {
+        commit(types.REMOVE_MYAPI, { status, obj_id } )
+      } else {
+        // TODO: ??
+      }
+      return { status, obj_id };
     }
   }
 }
