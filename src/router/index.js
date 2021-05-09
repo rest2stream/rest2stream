@@ -13,15 +13,17 @@ import {
 const isNotAuthenticated = (to, from, next) => {
   if (!store.getters['auth/isAuthenticated']) {
     next()
+  } else {
+    next('/')
   }
-  next('/')
 };
 
 const isAuthenticated = (to, from, next) => {
   if (store.getters['auth/isAuthenticated']) {
     next()
+  } else {
+    next({name:'login'})
   }
-  next({name:'login'})
 };
 
 const routes = [
