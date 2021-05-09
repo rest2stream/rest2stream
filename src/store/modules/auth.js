@@ -56,7 +56,6 @@ const auth = {
       const status = response.status;
       const data = await response.json();
       if (response.ok) {
-        console.log('login ok', data)
         commit(types.LOGIN_OK, { status, data });
       } else {
         commit(types.LOGIN_ERROR, { status, data });
