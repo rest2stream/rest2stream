@@ -4,33 +4,39 @@ import types from '../types'
 const auth = {
   namespaced: true,
   state: {
-    token: null,
+    //token: null,
     status: null,
     status_msg: null,
-    user: {}
+    user: {},
+    token: {}
   },
   getters: {
     isAuthenticated (state) {
+      // define as Date so we can convert to acceptable date time format (with out letter T, ex. 2020-10-10T06:50:14.751 )
+      const temp = new Date(state.token.exp) 
+      // suffix UTC so it will render as local time when it use toLocalString
+      const exp = new Date(`${temp.toLocaleString()} UTC`); 
       return (
-        (state.token && state.token.length > 0) &&
-        (state.user.username && state.user.username.length > 0)
-     ); // TODO: need to add extra checking token expiration?
+        (Object.entries(state.token).length > 0) &&
+        (Object.entries(state.user).length > 0 ) &&
+        (exp > new Date())
+     ); 
     }
   },
   mutations: {
     [types.LOGIN_OK](state, { status, data} ) {
       state.status = status
       state.status_msg = ''; // only applies for ERROR?
-      state.token = data.access_token;
+      state.token = data;
     },
     [types.LOGIN_ERROR](state, { status, data}) {
       state.status = status;
       state.status_msg = data.detail;
       state.user = {};
-      state.token = '';
+      state.token = {};
     },
     [types.LOGOUT](state) {
-      state.token = '';
+      state.token = {};
       state.user = {};
       state.status = '';
       state.status_msg = '';
@@ -43,7 +49,7 @@ const auth = {
       state.status = status;
       state.status_msg = data.detail;
       state.user = {};
-      state.token = '';
+      state.token = {};
     },
   },
   // TODO: use axios?
@@ -66,7 +72,7 @@ const auth = {
       const response = await fetch(import.meta.env.VITE_ACCOUNTS_INFO_URL, {
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${state.token}`
+          'Authorization': `Bearer ${state.token.access_token}`
         }
       });
       const status = response.status;
