@@ -8,7 +8,7 @@
               <label class="mdl-textfield__label" for="id_username">Username..</label>
             </div>
             <div class="box__pass mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="password" id="id_password" name="password" v-model="frm.password">
+              <input class="mdl-textfield__input" type="password" id="id_password" name="password" v-model="frm.password" autocomplete="on">
               <label class="mdl-textfield__label" for="id_password">Password..</label>
             </div>
             <button class="box__btn mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
