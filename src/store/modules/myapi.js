@@ -8,14 +8,14 @@ const myapi = {
     myapi: [],
   },
   mutations: {
-    [types.CREATE_MYAPI](state, { status, data }) {
+    [types.CREATE_MYAPI_OK](state, { status, data }) {
         state.myapi.push(data)
     },
-    [types.FETCH_MYAPI](state, { status, data} ) {
+    [types.FETCH_MYAPI_OK](state, { status, data} ) {
         state.myapi = data;
         //sessionStorage.setItem('myapi', JSON.stringify(data))
     },
-    [types.REMOVE_MYAPI](state, { status, obj_id } ) {
+    [types.REMOVE_MYAPI_OK](state, { status, obj_id } ) {
       state.myapi = state.myapi.filter(res => res.id != obj_id)
     },
   },
@@ -31,7 +31,7 @@ const myapi = {
       const status = response.status;
       const data = await response.json();
       if (response.ok) {
-        commit(types.CREATE_MYAPI, { status, data })
+        commit(types.CREATE_MYAPI_OK, { status, data })
       } else {
         // TODO: ??
       }
@@ -42,7 +42,7 @@ const myapi = {
       const status = response.status;
       const data = await response.json();
       if (response.ok) {
-        commit(types.FETCH_MYAPI, { status, data })
+        commit(types.FETCH_MYAPI_OK, { status, data })
       } else {
         // TODO: ??
       }
@@ -55,7 +55,7 @@ const myapi = {
       const status = response.status;
       //const data = await response.json();
       if (response.ok) {
-        commit(types.REMOVE_MYAPI, { status, obj_id } )
+        commit(types.REMOVE_MYAPI_OK, { status, obj_id } )
       } else {
         // TODO: ??
       }

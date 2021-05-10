@@ -1,5 +1,5 @@
 import { useStore } from 'vuex'
-import types from '../store/types'
+import types from '@/store/types'
 import _ from 'lodash';
 
 
