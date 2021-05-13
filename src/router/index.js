@@ -37,7 +37,6 @@ const routes = [
     path: "/",
     name: "layout",
     component: Layout,
-    beforeEnter: isAuthenticated,
     children: [
       {
         path: "/",
@@ -54,6 +53,7 @@ const routes = [
             path: "/myapi/edit/:id",
             name: "myapi-edit",
             component: MyApiEdit,
+            beforeEnter: isAuthenticated,
           },
         ]
       },
