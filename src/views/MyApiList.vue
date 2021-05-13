@@ -13,11 +13,9 @@
       <div class="myapi-list__frequency">{{api.polling_frequency}} {{api.polling_unit}}</div>
       <div class="myapi-list__action mdc-typeography--button">
         <!-- Colored icon button -->
-        <button @click="remove(api.id)" class="mdc-button">
-          <span class="mdc-button__ripple"></span>
-          <i class="material-icons mdc-button__icon" aria-hidden="true"
-            >delete
-          </i>
+        <button @click="remove(api.id)" 
+          class="u--red material-icons mdc-icon-button" 
+          aria-label="Remove">remove_circle_outline
         </button>
       </div>
     </template>
@@ -43,6 +41,7 @@
         site.set('MyApi');
       })
 
+      // TODO: make sure use is log in first
       const remove = async (obj_id) => {
         await myapi.remove(obj_id);
       }
@@ -93,5 +92,10 @@
     }
 
   }
+
+.u--red {
+  color:red
+}
+
 
 </style>
