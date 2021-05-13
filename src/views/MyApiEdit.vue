@@ -11,7 +11,7 @@
     }"
     #default="{ isValid }" 
   >
-    <div :class="css">
+    <div class="myapi-edit">
       <!-- {{frm}}
       {{store.state.myapi}} -->
       <!-- how to add individual custom validation?
@@ -22,33 +22,38 @@
             foundElle: 'Oh no! message contains Elle??'
           }" -->
 
-        <FormInput
-          :class="`${css}__name`"
-          id="Name"
-          type="text"
-          placeholder="Please enter text"
-          v-model="frm.name"
-          required
-        />
+        <div class="myapi-edit__name">
+          <FormInput
+            id="Name"
+            type="text"
+            placeholder="Please enter text"
+            v-model="frm.name"
+            required
+            help="zup"
+          />
+        </div>
 
-        <FormInput
-          :class="`${css}__desc`"
-          id="Desc"
-          type="text"
-          placeholder="Please enter desc"
-          v-model="frm.description"
-        />
+        <div class="myapi-edit__desc">
+          <FormInput
+            id="Desc"
+            type="text"
+            placeholder="Please enter desc"
+            v-model="frm.description"
+          />
+        </div>
 
-        <FormInput
-          :class="`${css}__url`"
-          id="Url"
-          type="url"
-          placeholder="Please enter valid url"
-          v-model="frm.url"
-          required
-        />
+        <div class="myapi-edit__url">
+          <FormInput
+            class="myapi-edit__url"
+            id="Url"
+            type="url"
+            placeholder="Please enter valid url"
+            v-model="frm.url"
+            required
+          />
+        </div>
 
-        <div :class="`${css}__frequency`">
+        <div class="myapi-edit__frequency">
           <div>
             <FormInput
               id="Frequency"
@@ -69,27 +74,37 @@
           </div>
         </div>
 
-        <FormTextarea
-          :class="`${css}__headers`"
-          v-model="frm.http_headers"
-          id="headers"
-          label="HTTP Headers"
-          placeholder="Add Multiple HTTP headers in json format"
-          help="example: { Authorization: 'Basic AfgasdwQDU1dzByYM==' }"
-        />
+        <div class="myapi-edit__headers">
+          <FormTextarea
+            v-model="frm.http_headers"
+            id="headers"
+            label="HTTP Headers"
+            placeholder="Add Multiple HTTP headers in json format"
+            help="example: { Authorization: 'Basic AfgasdwQDU1dzByYM==' }"
+            maxlength="140"
+            rows="5"
+          />
+        </div>
 
-        <FormTextarea
-          :class="`${css}__query_params`"
-          v-model="frm.query_params"
-          id="query_params"
-          label="Query Params"
-          placeholder="Add Multiple Query params in json format"
-          help="example: { token : 'yzkg' }"
-        />
+        <div class="myapi-edit__query_params">
+          <FormTextarea
+            v-model="frm.query_params"
+            id="query_params"
+            label="Query Params"
+            placeholder="Add Multiple Query params in json format"
+            help="example: { token : 'yzkg' }"
+            maxlength="140"
+            rows="5"
+          />
+        </div>
 
-        <div :class="`${css}__button`">
-          <button @click.prevent="create()" :disabled="!isValid" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-            Save
+        <div class="myapi-edit__button">
+          <button 
+            @click.prevent="create()"
+            :disabled="!isValid" 
+            class="box__btn mdc-button mdc-button--raised">
+            <div class="mdc-button__ripple"></div>
+            <span class="mdc-button__label">Save</span>
           </button>
         </div>
     </div>
@@ -102,6 +117,7 @@
   import useMyApi  from '@/use/useMyApi';
   import { useRoute, useRouter } from 'vue-router';
   import { useStore } from 'vuex';
+  import useMDC  from '@/use/useMDC';
   import { 
       FormInput, 
       FormSelect, 
@@ -121,6 +137,7 @@
       const router = useRouter();
       const site = useSite();
       const myapi = useMyApi();
+      const mdc1 = useMDC();
       const store = useStore();
       const css = ref('myapi-edit');
       const frm = ref({
@@ -131,6 +148,11 @@
         polling_unit: "minutes",
         http_headers: "",
         query_params: ""
+      })
+
+      onMounted(() => {
+        mdc1.buttonInit();
+        mdc1.textFieldInit();
       })
 
       const stop = watchEffect(async () => {
@@ -182,7 +204,7 @@
     display: grid;
     padding: 2rem;
     gap: 2rem;
-    grid-template-columns: auto 300px;
+    grid-template-columns: 2fr 1.5fr;
     grid-template-areas: "name headers"
                          "desc headers"
                          "url query_params"
@@ -223,7 +245,6 @@
       justify-self: right;
     }
   }
-
 
 
 </style>

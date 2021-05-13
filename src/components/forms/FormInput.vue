@@ -1,27 +1,20 @@
 <template>
 
-  <div :class="divClass || styling.FormInput?.divClass || styling.divClass">
-    <label 
-      v-if="id && !label" 
-      :class="labelClass || styling.FormInput?.labelClass || styling.labelClass"
-      :for="id"
-    >{{id}}</label>
-
-    <label 
-      v-if="id && label" 
-      :class="labelClass || styling.FormInput?.labelClass || styling.labelClass"
-      :for="id"
-    >{{label}}</label>
-
+  <label class="mdc-text-field mdc-text-field--filled">
+    <span class="mdc-text-field__ripple"></span>
+    <span class="mdc-floating-label" id="my-label-id">{{id}}</span>
     <input 
-      :class="inputClass || styling.FormInput?.inputClass || styling.elementsClass"
+      class="mdc-text-field__input"
       v-bind="$attrs"
       :id="id" 
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
     >
-    <span :class="validationClass || styling.FormInput?.validationClass || styling.validationClass" v-if="valMsg">{{valMsg}}</span>
-    <span :class="helpClass || styling.FormInput?.helpClass || styling.helpClass" v-if="help && !valMsg">{{help}}</span>
+    <span class="mdc-line-ripple"></span>
+  </label>
+  <div class="mdc-text-field-helper-line">
+    <div v-if="valMsg" class="mdc-text-field-helper-text mdc-text-field-helper-text--persistent mdc-text-field-helper-text--validation-msg" id="username-helper-text" role="alert">{{valMsg}}</div>
+    <div v-if="help && !valMsg" class="mdc-text-field-helper-text mdc-text-field-helper-text--persistent" id="username-helper-text" aria-hidden="true">{{help}}</div>
   </div>
 
 </template>

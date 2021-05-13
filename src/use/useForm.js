@@ -65,14 +65,6 @@ export const props1 = {
       help: {
         type: String
       },
-      rows: {
-        type: Number,
-        default: 4
-      },
-      cols: {
-        type: Number,
-        default: 30
-      },
       textareaClass: {
         type: String
       },
