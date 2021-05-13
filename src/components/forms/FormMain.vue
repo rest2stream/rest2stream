@@ -45,12 +45,6 @@
         type: Object,
         required: true
       },
-      class: {
-        type: String,
-      },
-      elementsStyling: {
-        type: Object,
-      },
       validationMessage: {
         type: Object,
       },
@@ -62,7 +56,6 @@
       provide('__frmMain', { 
         frm: frm, 
         validity: valMsg, 
-        styling: props.elementsStyling, 
       })
 
       const setValidationMsg = (element) => {

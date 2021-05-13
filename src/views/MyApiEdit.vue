@@ -2,25 +2,9 @@
 {{frm}}
   <FormMain 
     v-model="frm" 
-    :elements-styling="{ 
-      divClass: 'mdl-textfield mdl-js-textfield mdl-textfield--floating-label',
-      labelClass: 'mdl-textfield__label',
-      elementsClass: 'mdl-textfield__input',
-      validationClass: 'validation_error',
-      helpClass: 'help_text',
-    }"
     #default="{ isValid }" 
   >
     <div class="myapi-edit">
-      <!-- {{frm}}
-      {{store.state.myapi}} -->
-      <!-- how to add individual custom validation?
-          :validation-custom="{
-            foundElle: (value) => ['elle'].includes(value)
-          }"
-          :validation-message="{
-            foundElle: 'Oh no! message contains Elle??'
-          }" -->
 
         <div class="myapi-edit__name">
           <FormInput
@@ -44,7 +28,6 @@
 
         <div class="myapi-edit__url">
           <FormInput
-            class="myapi-edit__url"
             id="Url"
             type="url"
             placeholder="Please enter valid url"

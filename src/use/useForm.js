@@ -65,29 +65,8 @@ export const props1 = {
       help: {
         type: String
       },
-      textareaClass: {
-        type: String
-      },
       options: {
         type: Object
-      },
-      selectClass: {
-        type: String
-      },
-      labelClass: {
-        type: String
-      },
-      inputClass: {
-        type: String
-      },
-      divClass: {
-        type: String
-      },
-      validationClass: {
-        type: String
-      },
-      helpClass: {
-        type: String
       },
       validationCustom: {
         type: Object,
