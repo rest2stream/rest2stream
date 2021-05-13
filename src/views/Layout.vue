@@ -32,7 +32,7 @@
     </header>
 
     <main class="main-content" id="main-content">
-      <div class="mdc-top-app-bar--fixed-adjust">
+      <div class="app mdc-top-app-bar--fixed-adjust">
         <div class="app__header mdc-typography--headline4"> <!-- header -->
           {{pageHeader}}
         </div>
@@ -87,7 +87,7 @@ export default {
 <style lang="scss" scoped>
 
   .app {
-    padding: 1rem 2rem; /*top/bottom 1rem, left/right 2rem*/
+    padding: 5rem 2rem; /*top/bottom 5rem, left/right 2rem*/
     display: grid;
     height: 84vh;
     gap: 1rem;

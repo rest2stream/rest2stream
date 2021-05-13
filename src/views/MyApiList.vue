@@ -1,19 +1,19 @@
 <template>
-  <div :class="`${css} mdl-typography--h6`">
-    <div :class="`${css}__name`"><strong>Name</strong></div>
-    <div :class="`${css}__url`"><strong>Url</strong></div>
-    <div :class="`${css}__frequency`"><strong>Polling Frequency</strong></div>
-    <div :class="`${css}__action`"><strong>Action</strong></div>
-    <div :class="`${css}__row-border`"></div>
+  <div class="myapi-list mdc-typography--subtitle1">
+    <div class="myapi-list__name"><strong>Name</strong></div>
+    <div class="myapi-list__url"><strong>Url</strong></div>
+    <div class="myapi-list__frequency"><strong>Polling Frequency</strong></div>
+    <div class="myapi-list__action"><strong>Action</strong></div>
+    <div class="myapi-list__row-border"></div>
     <template v-for="api in listOfApi">
-      <div :class="`${css}__name`">
+      <div class="myapi-list__name">
         <router-link :to="{ name: 'myapi-edit', params: { id: api.id }}">{{api.name}}</router-link>
       </div>
-      <div :class="`${css}__url`">{{api.url}}</div>
-      <div :class="`${css}__frequency`">{{api.polling_frequency}} {{api.polling_unit}}</div>
-      <div :class="`${css}__action`">
+      <div class="myapi-list__url">{{api.url}}</div>
+      <div class="myapi-list__frequency">{{api.polling_frequency}} {{api.polling_unit}}</div>
+      <div class="myapi-list__action mdc-typeography--button">
         <!-- Colored icon button -->
-        <button @click="remove(api.id)" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+        <button @click="remove(api.id)" class="mdc-button mdc-button--raised">
           <i class="material-icons">delete</i>
         </button>
       </div>
@@ -24,14 +24,13 @@
 
 
 <script>
-  import { onMounted, reactive, ref, computed } from 'vue';
+  import { onMounted, reactive, computed } from 'vue';
   import { useStore } from 'vuex';
   import useMyApi  from '@/use/useMyApi';
   import useSite  from '@/use/useSite';
   export default {
     name: "MyApiList",
     async setup() {
-      const css = ref('myapi-list')
       const listOfApi = computed(() => store.state.myapi.myapi);
       const store = useStore();
       const site = useSite();
@@ -47,7 +46,6 @@
 
       return {
         listOfApi,
-        css,
         store,
         remove
       }
@@ -62,7 +60,7 @@
   .myapi-list {
     display: grid;
     padding: 1rem;
-    grid-template-columns: 150px auto 100px 100px;
+    grid-template-columns: 170px auto 200px 130px;
     align-items: center;
 
     &__name {

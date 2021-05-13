@@ -19,7 +19,7 @@
                 <span class="mdc-line-ripple"></span>
               </label>
             </div>
-            <button class="box__btn mdc-button mdc-button--raised foo-button">
+            <button class="box__btn mdc-button mdc-button--raised">
               <div class="mdc-button__ripple"></div>
               <span class="mdc-button__label">Login</span>
             </button>
