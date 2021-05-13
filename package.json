@@ -6,10 +6,12 @@
     "build": "vite build"
   },
   "dependencies": {
+    "@material/theme": "^11.0.0",
     "@vitejs/plugin-vue": "^1.2.2",
     "lodash": "^4.17.21",
+    "postcss": "^8.2.15",
     "vue": "^3.0.11",
-    "vue-loader": "^15.9.6",
+    "vue-loader": "^16.2.0",
     "vue-router": "^4.0.0-rc.1",
     "vuex": "^4.0.0",
     "vuex-persistedstate": "*"
