@@ -67,9 +67,10 @@
           <div>
             <FormSelect 
               v-model="frm.polling_unit"
-              id="unit"
+              id="Unit"
               :options="{ hours : 'hours', minutes: 'minutes', seconds: 'seconds' }"
               help="This is a test"
+              readonly
             />
           </div>
         </div>
@@ -228,7 +229,7 @@
       grid-area: frequency;
       display: grid;
       gap: 1rem;
-      grid-template-columns: auto 100px;
+      grid-template-columns: auto 200px;
       justify-content: left;
     }
 
