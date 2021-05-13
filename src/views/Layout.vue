@@ -26,9 +26,26 @@
           <span class="mdc-top-app-bar__title">Rest API to Stream Data</span>
         </section>
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
-          <button v-if="user.username" :title="`Welcome ${user.username}!`" class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Account Circle">face</button>
-          <button v-if="user.username" @click="logout()" title="Logout" class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Open menu">logout</button>
-          <router-link v-if="!user.username" :to="{ name: 'login'}" tag="button" title="Please Login!" class="material-icons mdc-top-app-bar__action-item mdc-icon-button" >login</router-link>
+          <button 
+            v-if="user.username" 
+            :title="`Welcome ${user.username}!`" 
+            class="material-icons mdc-top-app-bar__action-item mdc-icon-button" 
+            aria-label="Account Circle">face
+          </button>
+          <button 
+            v-if="user.username" 
+            @click="logout()" 
+            title="Logout" 
+            class="material-icons mdc-top-app-bar__action-item mdc-icon-button" 
+            aria-label="Open menu">logout
+          </button>
+          <router-link 
+            v-if="!user.username" 
+            :to="{ name: 'login'}" 
+            tag="button" 
+            title="Please Login!" 
+            class="material-icons mdc-top-app-bar__action-item mdc-icon-button" >login
+          </router-link>
         </section>
       </div>
     </header>
