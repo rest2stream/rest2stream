@@ -15,7 +15,7 @@
     <span class="mdc-line-ripple"></span>
   </label>
     <div class="mdc-menu-surface--anchor">
-      <div class="mdc-menu mdc-menu-surface width-100">
+      <div :class="`${id} mdc-menu mdc-menu-surface width-100`">
         <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
           <li 
             class="mdc-list-item" 
@@ -43,17 +43,16 @@
   export default {
     name: "FormSelect",
     props: props1,
-    setup(props, { emit }) {
+    setup(props, { emit, attrs }) {
       const { valMsg, styling } = useForm(props);
 
       const openMenu = () => {
-        const menu = mdc.menu.MDCMenu.attachTo(document.querySelector('.mdc-menu'));
+        const menu = mdc.menu.MDCMenu.attachTo(document.querySelector(`.${props.id}`));
         menu.open = true;
       }
 
       const selectList = (opt) => {
         emit('update:modelValue', opt);
-        console.log(opt);
       }
 
       return {
