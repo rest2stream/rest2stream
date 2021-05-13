@@ -51,7 +51,8 @@
       })
 
       onMounted(() => {
-        mdc1.init();
+        mdc1.textFieldInit();
+        mdc1.buttonInit();
       })
 
       const login = async () => {

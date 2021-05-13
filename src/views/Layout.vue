@@ -1,32 +1,39 @@
 <template>
-  <!-- Always shows a header, even in smaller screens. -->
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-drawer">
-  <header class="mdl-layout__header">
-    <div class="mdl-layout__header-row">
-      <!-- Title -->
-      <span class="mdl-layout-title">Rest API to Stream Data</span>
-      <!-- Add spacer, to align navigation to the right -->
-      <div class="mdl-layout-spacer"></div>
-      <!-- Navigation. We hide it in small screens. -->
-      <nav class="mdl-navigation mdl-layout--large-screen-only">
-        <a class="mdl-navigation__link" href=""><strong>Welcome {{store.state.auth.user.username}}!</strong></a>
-        <a class="mdl-navigation__link" href="" @click.prevent="logout()">Logout</a>
+ <aside class="mdc-drawer mdc-drawer--dismissible">
+    <div class="mdc-drawer__content">
+      <nav class="mdc-list">
+        <router-link :to="{ name: 'myapi'}" class="mdc-list-item mdc-list-item--activated" href="#" aria-current="page">
+          <span class="mdc-list-item__ripple"></span>
+          <span class="mdc-list-item__text">MyApi's</span>
+        </router-link>
+        <router-link :to="{ name: 'account' }" class="mdc-list-item" href="#">
+          <span class="mdc-list-item__ripple"></span>
+          <span class="mdc-list-item__text">Accounts</span>
+        </router-link>
+        <router-link :to="{ name: 'settings' }" class="mdc-list-item" href="#">
+          <span class="mdc-list-item__ripple"></span>
+          <span class="mdc-list-item__text">Settings</span>
+        </router-link>
       </nav>
     </div>
-  </header>
-  <div class="mdl-layout__drawer">
-    <span class="mdl-layout-title">Rats</span>
-    <nav class="mdl-navigation">
-      <router-link class="mdl-navigation__link" :to="{ name: 'myapi' }">My APIs</router-link> 
-      <router-link class="mdl-navigation__link" :to="{ name: 'settings' }">Settings</router-link>
-      <router-link class="mdl-navigation__link" :to="{ name: 'account' }">Account</router-link>
-    </nav>
-  </div>
-  <main class="mdl-layout__content">
-    <div class="page-content">
-        <!-- Your content goes here -->
-      <div class="app">
-        <div class="app__header mdl-typography--title"> <!-- header -->
+  </aside>
+
+  <div class="mdc-drawer-app-content">
+    <header class="mdc-top-app-bar app-bar mdc-top-app-bar--fixed" id="app-bar">
+      <div class="mdc-top-app-bar__row">
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+          <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button">menu</button>
+          <span class="mdc-top-app-bar__title">Rest API to Stream Data</span>
+        </section>
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+          <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Open menu">more_vert</button>
+        </section>
+      </div>
+    </header>
+
+    <main class="main-content" id="main-content">
+      <div class="mdc-top-app-bar--fixed-adjust">
+        <div class="app__header mdc-typography--headline4"> <!-- header -->
           {{pageHeader}}
         </div>
         <div class="app__main">
@@ -39,24 +46,29 @@
             footer?
         </div>
       </div>
+    </main>
+  </div>
 
-    </div>
-  </main>
-</div>
 </template>
 
 <script>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 import useAuth from '@/use/useAuth';
+import useMDC from '@/use/useMDC';
 export default {
   name: 'Layout',
   setup() {
     const store = useStore();
     const auth = useAuth();
     const router = useRouter();
+    const mdc1 = useMDC();
     const pageHeader = computed(() => store.state.site.page_header)
+
+    onMounted(() => {
+      mdc1.drawerInit();
+    })
 
     const logout = () => {
       auth.logout();
@@ -101,5 +113,25 @@ export default {
     }
 
   }
+
+  .mdc-drawer-app-content {
+  flex: auto;
+  overflow: auto;
+  position: relative;
+}
+
+.main-content {
+  overflow: auto;
+  height: 100%;
+}
+
+.app-bar {
+  position: absolute;
+}
+
+// Only apply this style if below top app bar.
+.mdc-top-app-bar {
+  z-index: 7;
+}
 
 </style>
