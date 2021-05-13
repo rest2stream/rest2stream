@@ -111,7 +111,7 @@ export default {
   .app {
     padding: 5rem 2rem; /*top/bottom 5rem, left/right 2rem*/
     display: grid;
-    height: 84vh;
+    height: 98vh;
     gap: 1rem;
     grid-template-rows: 60px auto 50px;
     grid-template-areas: "header"
