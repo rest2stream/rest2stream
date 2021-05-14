@@ -3,6 +3,7 @@ import { createWebHistory, createRouter } from "vue-router";
 import { 
   MyApiIndex,
   MyApiEdit,
+  MyApiAdd,
   MyApiList,
   Settings,
   Account,
@@ -48,6 +49,12 @@ const routes = [
             path: "/myapi/list",
             name: "myapi-list",
             component: MyApiList,
+          },
+          {
+            path: "/myapi/add/",
+            name: "myapi-add",
+            component: MyApiAdd,
+            beforeEnter: isAuthenticated,
           },
           {
             path: "/myapi/edit/:id",

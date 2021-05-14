@@ -7,6 +7,7 @@ export default function useMyApi() {
 
   const store = useStore()
   const create = async (obj) => await store.dispatch(`myapi/${types.CREATE_MYAPI}`, obj);
+  const update = async (obj_id, obj) => await store.dispatch(`myapi/${types.UPDATE_MYAPI}`, { obj_id, obj } );
   const fetch = async() => await store.dispatch(`myapi/${types.FETCH_MYAPI}`);
   const remove = async (obj_id) => await store.dispatch(`myapi/${types.REMOVE_MYAPI}`, obj_id);
   const refetch = async(obj_id) => {
@@ -28,6 +29,7 @@ export default function useMyApi() {
 
   return {
     create,
+    update,
     fetch,
     get,
     remove

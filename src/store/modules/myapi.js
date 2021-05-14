@@ -11,6 +11,9 @@ const myapi = {
     [types.CREATE_MYAPI_OK](state, { status, data }) {
         state.myapi.push(data)
     },
+    [types.UPDATE_MYAPI_OK](state, { status, data }) {
+        state.myapi.push(data)
+    },
     [types.FETCH_MYAPI_OK](state, { status, data} ) {
         state.myapi = data;
         //sessionStorage.setItem('myapi', JSON.stringify(data))
@@ -33,6 +36,31 @@ const myapi = {
       if (response.ok) {
         commit(types.CREATE_MYAPI_OK, { status, data })
       } else {
+        // TODO: ??
+      }
+      return { status, data };
+    },
+    async [types.UPDATE_MYAPI]({ commit }, { obj_id, obj }) {
+
+      // TODO: handle this in backend?
+      delete obj.created_at;
+      delete obj.modified_at;
+      delete obj.id;
+
+      const response = await fetch(`${import.meta.env.VITE_MYAPI_URL}/${obj_id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(obj)
+      });
+      const status = response.status;
+      const data = await response.json();
+      if (response.ok) {
+        commit(types.UPDATE_MYAPI_OK, { status, data })
+      } else {
+        console.log(response)
+        console.log(obj)
         // TODO: ??
       }
       return { status, data };

@@ -1,7 +1,7 @@
 <template>
   <MyApi
-    mode="edit"
-    title="Edit Myapi"
+    mode="add"
+    title="Add Myapi"
   />
 </template>
 
@@ -10,7 +10,7 @@
       MyApi, 
   } from '@/components/forms';
   export default {
-    name: "MyApiEdit",
+    name: "MyApiAdd",
     components: {
       MyApi,
     },
