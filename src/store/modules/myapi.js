@@ -9,10 +9,12 @@ const myapi = {
   },
   mutations: {
     [types.CREATE_MYAPI_OK](state, { status, data }) {
-        state.myapi.push(data)
+      state.myapi.push(data)
     },
     [types.UPDATE_MYAPI_OK](state, { status, data }) {
-        state.myapi.push(data)
+      // TODO: good to use json patch?
+      state.myapi = state.myapi.filter(r => r.id != data.id)
+      state.myapi.push(data)
     },
     [types.FETCH_MYAPI_OK](state, { status, data} ) {
         state.myapi = data;
