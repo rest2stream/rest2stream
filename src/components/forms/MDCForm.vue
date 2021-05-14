@@ -39,7 +39,7 @@
   import _ from 'lodash';
   import { onMounted, ref, watch, provide  } from 'vue'
   export default {
-    name: "FormMain",
+    name: "MDCForm",
     props: {
       modelValue: {
         type: Object,

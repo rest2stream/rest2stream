@@ -26,7 +26,7 @@
 <script>
   import { useForm, props1 }  from '../../use/useForm';
   export default {
-      name: "FormTextarea",
+      name: "MDCTextArea",
       props: props1,
       setup(props, { attrs }) {
         const { valMsg, styling } = useForm(props);

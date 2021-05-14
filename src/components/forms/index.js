@@ -1,11 +1,11 @@
-import FormInput from './FormInput.vue';
-import FormSelect from './FormSelect.vue';
-import FormMain from './FormMain.vue';
-import FormTextarea from './FormTextarea.vue';
+import MDCTextField from './MDCTextField.vue';
+import MDCSelect from './MDCSelect.vue';
+import MDCForm from './MDCForm.vue';
+import MDCTextArea from './MDCTextArea.vue';
 
 export {
-    FormInput,
-    FormSelect,
-    FormMain,
-    FormTextarea
+    MDCTextField,
+    MDCSelect,
+    MDCForm,
+    MDCTextArea,
 }

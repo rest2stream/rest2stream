@@ -41,7 +41,7 @@
 <script>
   import { useForm, props1 }  from '@/use/useForm';
   export default {
-    name: "FormSelect",
+    name: "MDCSelect",
     props: props1,
     setup(props, { emit, attrs }) {
       const { valMsg, styling } = useForm(props);

@@ -1,5 +1,4 @@
 <template>
-
   <label class="mdc-text-field mdc-text-field--filled">
     <span class="mdc-text-field__ripple"></span>
     <span class="mdc-floating-label" id="my-label-id">{{id}}</span>
@@ -20,16 +19,24 @@
 </template>
 
 <script>
-  import { useForm, props1 }  from '../../use/useForm';
+  import { onMounted } from 'vue';
+  import { useForm, props1 }  from '@/use/useForm';
   export default {
-    name: "FormInput",
+    name: "MDCTextField",
     props: props1,
     setup(props) {
-      const { valMsg, styling } = useForm(props);
+      const { valMsg } = useForm(props);
+
+      onMounted(() => {
+        const textFields = document.querySelectorAll('.mdc-text-field');
+        for (const textField of textFields) {
+          mdc.textField.MDCTextField.attachTo(textField);
+          //new MDCTextField(textField);
+        }
+      })
 
       return {
         valMsg,
-        styling
       }
 
     }

@@ -1,13 +1,13 @@
 <template>
 {{frm}}
-  <FormMain 
+  <MDCForm 
     v-model="frm" 
     #default="{ isValid }" 
   >
     <div class="myapi-edit">
 
         <div class="myapi-edit__name">
-          <FormInput
+          <MDCTextField
             id="Name"
             type="text"
             placeholder="Please enter text"
@@ -18,7 +18,7 @@
         </div>
 
         <div class="myapi-edit__desc">
-          <FormInput
+          <MDCTextField
             id="Desc"
             type="text"
             placeholder="Please enter desc"
@@ -27,7 +27,7 @@
         </div>
 
         <div class="myapi-edit__url">
-          <FormInput
+          <MDCTextField
             id="Url"
             type="url"
             placeholder="Please enter valid url"
@@ -38,7 +38,7 @@
 
         <div class="myapi-edit__frequency">
           <div>
-            <FormInput
+            <MDCTextField
               id="Frequency"
               type="number"
               placeholder="Polling frequency"
@@ -48,7 +48,7 @@
             />
           </div>
           <div>
-            <FormSelect 
+            <MDCSelect 
               v-model="frm.polling_unit"
               id="Unit"
               :options="{ hours : 'hours', minutes: 'minutes', seconds: 'seconds' }"
@@ -59,7 +59,7 @@
         </div>
 
         <div class="myapi-edit__headers">
-          <FormTextarea
+          <MDCTextArea
             v-model="frm.http_headers"
             id="headers"
             label="HTTP Headers"
@@ -71,7 +71,7 @@
         </div>
 
         <div class="myapi-edit__query_params">
-          <FormTextarea
+          <MDCTextArea
             v-model="frm.query_params"
             id="query_params"
             label="Query Params"
@@ -86,13 +86,14 @@
           <button 
             @click.prevent="create()"
             :disabled="!isValid" 
-            class="box__btn mdc-button mdc-button--raised">
+            class="box__btn mdc-button mdc-button--raised"
+          >
             <div class="mdc-button__ripple"></div>
             <span class="mdc-button__label">Save</span>
           </button>
         </div>
     </div>
-  </FormMain>
+  </MDCForm>
 </template>
 
 <script>
@@ -103,18 +104,18 @@
   import { useStore } from 'vuex';
   import useMDC  from '@/use/useMDC';
   import { 
-      FormInput, 
-      FormSelect, 
-      FormTextarea, 
-      FormMain 
+      MDCTextField, 
+      MDCSelect, 
+      MDCTextArea, 
+      MDCForm 
   } from '@/components/forms';
   export default {
     name: "MyApiEdit",
     components: {
-      FormInput,
-      FormSelect,
-      FormTextarea,
-      FormMain
+      MDCTextField,
+      MDCSelect,
+      MDCTextArea,
+      MDCForm
     },
     async setup() {
       const route = useRoute();
@@ -135,8 +136,11 @@
       })
 
       onMounted(() => {
-        mdc1.buttonInit();
-        mdc1.textFieldInit();
+        const buttons = document.querySelectorAll('.mdc-button');
+        for (const button of buttons) {
+          mdc.ripple.MDCRipple.attachTo(button);
+          //new MDCRipple(button);
+        }
       })
 
       const stop = watchEffect(async () => {

@@ -3,7 +3,7 @@ import { watch, onMounted, inject,  toRefs, ref, computed } from 'vue'
 export function useForm(props) {
   const frm = inject('__frmMain');
   let valMsg = ref('');
-  const styling = computed(() => frm.styling)
+  const isValid = computed(() => frm.isValid)
   const { modelValue } = toRefs(props)
 
   const setCustomRulesAndValMsg = (newVal) => {
@@ -46,7 +46,7 @@ export function useForm(props) {
 
   return {
     valMsg,
-    styling
+    isValid,
   }
 
 }
