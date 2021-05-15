@@ -53,7 +53,11 @@
     <main class="main-content" id="main-content">
       <div class="app mdc-top-app-bar--fixed-adjust">
         <div class="app__header mdc-typography--headline4"> <!-- header -->
-          {{pageHeader}}
+          <div class="mdc-typography--headline4">
+            {{pageHeader}}
+          </div>
+          <div class="app__header__btn">
+          </div>
         </div>
         <div class="app__main">
           <Suspense>
@@ -121,6 +125,13 @@ export default {
     &__header {
       grid-area: header;
       padding:1rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      &__btn {
+        justify-self: right;
+      }
+
     }
 
     &__main {
@@ -137,23 +148,24 @@ export default {
   }
 
   .mdc-drawer-app-content {
-  flex: auto;
-  overflow: auto;
-  position: relative;
-}
+    flex: auto;
+    overflow: auto;
+    position: relative;
+  }
 
-.main-content {
-  overflow: auto;
-  height: 100%;
-}
+  .main-content {
+    overflow: auto;
+    height: 100%;
+  }
 
-.app-bar {
-  position: absolute;
-}
+  .app-bar {
+    position: absolute;
+  }
 
-// Only apply this style if below top app bar.
-.mdc-top-app-bar {
-  z-index: 7;
-}
+  // Only apply this style if below top app bar.
+  .mdc-top-app-bar {
+    z-index: 7;
+  }
+
 
 </style>

@@ -21,6 +21,16 @@
     </template>
   </div>
 
+  <teleport to=".app__header__btn">
+    <router-link 
+      :to="{name: 'myapi-add'}" 
+      class="mdc-button mdc-button--raised"
+      tag="button">
+        <div class="mdc-button__ripple"></div>
+        <span class="mdc-button__label">Add</span>
+    </router-link>
+  </teleport>
+
 </template>
 
 

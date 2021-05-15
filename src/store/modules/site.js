@@ -1,4 +1,4 @@
-import types from '../types'
+import types from '@/store/types'
 
 const site = {
   namespaced: true,
