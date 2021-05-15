@@ -14,7 +14,7 @@
       <div class="myapi-list__action mdc-typeography--button">
         <!-- Colored icon button -->
         <button @click="remove(api.id)" 
-          class="u--red material-icons mdc-icon-button" 
+          class="u-red material-icons mdc-icon-button" 
           aria-label="Remove">remove_circle_outline
         </button>
       </div>
@@ -102,10 +102,6 @@
     }
 
   }
-
-.u--red {
-  color:red
-}
 
 
 </style>
