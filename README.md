@@ -2,16 +2,15 @@
 Rest API 2 Stream data (RATS) 🐀  a web service that can help developers convert their Rest API into a stream of real-time data. 
 
 ## MyApi Configuration Screenshot
-![image](https://user-images.githubusercontent.com/3206118/115252611-326e0180-a15e-11eb-9df8-dd78fdb435a5.png)
+![image](https://user-images.githubusercontent.com/3206118/118363708-4293c800-b5c8-11eb-9386-5ea93ed0f1e6.png)
 
 
-## Installation (Vue3 Frontend)
+## Installation 
 ```
-npm install vue@next
-npm install vuex@next --save
+npm install
 ```
 
-## How to run development server? (Vue3 Frontend)
+## How to run development server? 
 ```
 cd /home/{username}/fastapi-rest2stream/vu3
 npm run dev
