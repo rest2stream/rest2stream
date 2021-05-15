@@ -1,6 +1,6 @@
 
 //import http from '../../http'
-import types from '../types'
+import types from '@/store/types'
 
 const myapi = {
   namespaced: true,
@@ -25,11 +25,12 @@ const myapi = {
     },
   },
   actions: {
-    async [types.CREATE_MYAPI]({ commit }, obj) {
+    async [types.CREATE_MYAPI]({ commit, rootState }, obj) {
       const response = await fetch(import.meta.env.VITE_MYAPI_CREATE_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${rootState.auth.token.access_token}`
         },
         body: JSON.stringify(obj)
       });
@@ -42,7 +43,7 @@ const myapi = {
       }
       return { status, data };
     },
-    async [types.UPDATE_MYAPI]({ commit }, { obj_id, obj }) {
+    async [types.UPDATE_MYAPI]({ commit, rootState }, { obj_id, obj }) {
 
       // TODO: handle this in backend?
       delete obj.created_at;
@@ -53,6 +54,7 @@ const myapi = {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${rootState.auth.token.access_token}`
         },
         body: JSON.stringify(obj)
       });
@@ -78,9 +80,13 @@ const myapi = {
       }
       return { status, data };
     },
-    async [types.REMOVE_MYAPI]({ commit }, obj_id ) {
+    async [types.REMOVE_MYAPI]({ commit, rootState }, obj_id ) {
       const response = await fetch(`${import.meta.env.VITE_MYAPI_URL}/${obj_id}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${rootState.auth.token.access_token}`
+        },
       });
       const status = response.status;
       //const data = await response.json();

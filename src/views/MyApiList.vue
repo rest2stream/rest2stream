@@ -64,8 +64,12 @@
 
       // TODO: make sure use is log in first
       const remove = async (obj_id, name) => {
-        await myapi.remove(obj_id);
-        snackLabel.value = `${name} has been removed!`;
+        const { status } = await myapi.remove(obj_id);
+        if (status != 401) {
+          snackLabel.value = `${name} has been removed!`;
+        } else {
+          snackLabel.value = `Not authorized, Please login!`;
+        }
         snackRef.value.open();
       }
 

@@ -1,5 +1,5 @@
 //import http from '../../http'
-import types from '../types'
+import types from '@/store/types'
 
 const auth = {
   namespaced: true,
