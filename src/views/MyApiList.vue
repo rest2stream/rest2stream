@@ -13,7 +13,7 @@
       <div class="myapi-list__frequency">{{api.polling_frequency}} {{api.polling_unit}}</div>
       <div class="myapi-list__action mdc-typeography--button">
         <!-- Colored icon button -->
-        <button @click="remove(api.id)" 
+        <button @click="remove(api.id, api.name)" 
           class="u-red material-icons mdc-icon-button" 
           aria-label="Remove">remove_circle_outline
         </button>
@@ -31,35 +31,50 @@
     </router-link>
   </teleport>
 
+  <MDCSnackbar
+    ref="snackRef"
+    :label="snackLabel"
+  />
+
 </template>
 
 
 <script>
-  import { onMounted, reactive, computed } from 'vue';
+  import { onMounted, reactive, computed, ref } from 'vue';
   import { useStore } from 'vuex';
+  import { MDCSnackbar } from '@/components/forms'
   import useMyApi  from '@/use/useMyApi';
   import useSite  from '@/use/useSite';
   export default {
     name: "MyApiList",
+    components: {
+      MDCSnackbar
+    },
     async setup() {
       const listOfApi = computed(() => store.state.myapi.myapi);
       const store = useStore();
       const site = useSite();
       const myapi = useMyApi();
+      const snackLabel = ref('');
+      const snackRef = ref(null);
 
       onMounted(() => {
         site.set('MyApi');
       })
 
       // TODO: make sure use is log in first
-      const remove = async (obj_id) => {
+      const remove = async (obj_id, name) => {
         await myapi.remove(obj_id);
+        snackLabel.value = `${name} has been removed!`;
+        snackRef.value.open();
       }
 
       return {
         listOfApi,
         store,
-        remove
+        remove,
+        snackLabel,
+        snackRef
       }
 
     }
@@ -67,7 +82,7 @@
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
   .myapi-list {
     display: grid;

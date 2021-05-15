@@ -93,6 +93,12 @@
         </div>
     </div>
   </MDCForm>
+
+  <MDCSnackbar
+    ref="snackRef"
+    :label="snackLabel"
+  />
+
 </template>
 
 <script>
@@ -105,7 +111,8 @@
       MDCTextField, 
       MDCSelect, 
       MDCTextArea, 
-      MDCForm 
+      MDCForm,
+      MDCSnackbar
   } from '@/components/forms';
   export default {
     name: "MyApi",
@@ -113,7 +120,8 @@
       MDCTextField,
       MDCSelect,
       MDCTextArea,
-      MDCForm
+      MDCForm,
+      MDCSnackbar
     },
     props: {
       mode: {
@@ -140,7 +148,9 @@
         polling_unit: "minutes",
         http_headers: "",
         query_params: ""
-      })
+      });
+      const snackLabel = ref('');
+      const snackRef = ref(null);
 
       onMounted(() => {
         const buttons = document.querySelectorAll('.mdc-button');
@@ -161,25 +171,36 @@
       }
       
       onMounted(() => {
-        site.set(props.title)
+        site.set(props.title);
       })
 
       const createOrUpdate = async () => {
-        if (props.mode == 'edit') {
-          console.log(frm.value)
-          await myapi.update(route.params.id, frm.value) // TODO: update
-        } else {
-          await myapi.create(frm.value)
+        let msg = '';
+
+        if (props.mode == 'edit') { // edit 
+          await myapi.update(route.params.id, frm.value); 
+          msg = `${frm.value.name} has been updated!`;
+        } else { // create
+          await myapi.create(frm.value);
+          msg = `${frm.value.name} has been created!`;
         }
-        router.push({ name: 'myapi-list' })
-        console.log(frm)
+
+        snackLabel.value = msg;
+        snackRef.value.open();
+
+        // add a delay to make Snackbar noticeable
+        setTimeout(() => {
+          router.push({ name: 'myapi-list' })
+        }, 1000);
       }
 
 
       return {
         createOrUpdate,
         frm,
-        store
+        store,
+        snackLabel,
+        snackRef
       }
     }
   }
