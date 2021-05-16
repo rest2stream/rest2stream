@@ -103,10 +103,11 @@
 
 <script>
   import { onMounted, ref, watchEffect } from 'vue';
-  import useSite  from '@/use/useSite';
-  import useMyApi  from '@/use/useMyApi';
   import { useRoute, useRouter } from 'vue-router';
   import { useStore } from 'vuex';
+  import useSite  from '@/use/useSite';
+  import useMyApi  from '@/use/useMyApi';
+  import useUtils from '@/use/useUtils';
   import { 
       MDCTextField, 
       MDCSelect, 
@@ -140,6 +141,7 @@
       const site = useSite();
       const myapi = useMyApi();
       const store = useStore();
+      const utils = useUtils();
       const frm = ref({
         name: "",
         description: "",
@@ -153,11 +155,7 @@
       const snackRef = ref(null);
 
       onMounted(() => {
-        const buttons = document.querySelectorAll('.mdc-button');
-        for (const button of buttons) {
-          mdc.ripple.MDCRipple.attachTo(button);
-          //new MDCRipple(button);
-        }
+        mdc.ripple.MDCRipple.attachTo(document.querySelector('.mdc-button'));
       })
 
       if (props.mode == 'edit') {
@@ -178,11 +176,11 @@
         let msg = '';
 
         if (props.mode == 'edit') { // edit 
-          await myapi.update(route.params.id, frm.value); 
-          msg = `${frm.value.name} has been updated!`;
+          const { status } = await myapi.update(route.params.id, frm.value); 
+          msg = utils.getMsg(status, frm.value.name, 'updated')
         } else { // create
-          await myapi.create(frm.value);
-          msg = `${frm.value.name} has been created!`;
+          const { status } = await myapi.create(frm.value);
+          msg = utils.getMsg(status, frm.value.name, 'created')
         }
 
         snackLabel.value = msg;
