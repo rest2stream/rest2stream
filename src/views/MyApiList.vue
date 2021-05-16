@@ -42,6 +42,7 @@
 <script>
   import { onMounted, reactive, computed, ref } from 'vue';
   import { useStore } from 'vuex';
+  import { useRouter } from 'vue-router';
   import { MDCSnackbar } from '@/components/forms'
   import useMyApi  from '@/use/useMyApi';
   import useSite  from '@/use/useSite';
@@ -53,6 +54,7 @@
     async setup() {
       const listOfApi = computed(() => store.state.myapi.myapi);
       const store = useStore();
+      const router = useRouter();
       const site = useSite();
       const myapi = useMyApi();
       const snackLabel = ref('');
@@ -62,15 +64,14 @@
         site.set('MyApi');
       })
 
-      // TODO: make sure use is log in first
       const remove = async (obj_id, name) => {
         const { status } = await myapi.remove(obj_id);
         if (status != 401) {
           snackLabel.value = `${name} has been removed!`;
+          snackRef.value.open();
         } else {
-          snackLabel.value = `Not authorized, Please login!`;
+          router.push({name: 'login'});
         }
-        snackRef.value.open();
       }
 
       return {

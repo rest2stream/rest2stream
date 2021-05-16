@@ -29,7 +29,7 @@ const isAuthenticated = (to, from, next) => {
 
 const routes = [
   {
-    path: "/login/",
+    path: "/login",
     name: "login",
     component: Login,
     beforeEnter: isNotAuthenticated,
@@ -51,7 +51,7 @@ const routes = [
             component: MyApiList,
           },
           {
-            path: "/myapi/add/",
+            path: "/myapi/add",
             name: "myapi-add",
             component: MyApiAdd,
             beforeEnter: isAuthenticated,
@@ -65,13 +65,13 @@ const routes = [
         ]
       },
       {
-        path: "/settings/",
+        path: "/settings",
         name: "settings",
         component: Settings,
         beforeEnter: isAuthenticated,
       },
       {
-        path: "/account/",
+        path: "/account",
         name: "account",
         component: Account,
         beforeEnter: isAuthenticated,
