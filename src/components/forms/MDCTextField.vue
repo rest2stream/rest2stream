@@ -1,7 +1,7 @@
 <template>
   <label class="mdc-text-field mdc-text-field--filled">
     <span class="mdc-text-field__ripple"></span>
-    <span class="mdc-floating-label" id="my-label-id">{{id}}</span>
+    <span class="mdc-floating-label" id="my-label-id">{{label || id}}</span>
     <input 
       class="mdc-text-field__input"
       v-bind="$attrs"

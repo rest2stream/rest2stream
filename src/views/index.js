@@ -7,6 +7,7 @@ import Settings from "@/views/Settings.vue";
 import Account from "@/views/Account.vue";
 import Login from "@/views/Login.vue";
 import Layout from "@/views/Layout.vue";
+import QuickTest from "@/views/QuickTest.vue";
 
 export {
     MyApiIndex,
@@ -16,5 +17,6 @@ export {
     Settings,
     Account,
     Login,
-    Layout
+    Layout,
+    QuickTest
 }

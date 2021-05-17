@@ -1,7 +1,7 @@
 <template>
 
   <label class="mdc-text-field mdc-text-field--filled mdc-text-field--textarea">
-  <span class="mdc-floating-label" id="my-label-id">{{label}}</span>
+  <span class="mdc-floating-label" id="my-label-id">{{label || id}}</span>
   <span class="mdc-text-field__ripple"></span>
   <span class="mdc-text-field__resizer">
     <textarea 

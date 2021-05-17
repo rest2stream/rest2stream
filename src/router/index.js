@@ -9,6 +9,7 @@ import {
   Account,
   Login,
   Layout,
+  QuickTest
 } from "@/views";
 
 const isNotAuthenticated = (to, from, next) => {
@@ -63,6 +64,11 @@ const routes = [
             beforeEnter: isAuthenticated,
           },
         ]
+      },
+      {
+        path: "/quicktest",
+        name: "quicktest",
+        component: QuickTest,
       },
       {
         path: "/settings",

@@ -2,6 +2,10 @@
  <aside class="mdc-drawer mdc-drawer--dismissible">
     <div class="mdc-drawer__content">
       <nav class="mdc-list">
+        <router-link :to="{ name: 'quicktest'}" class="mdc-list-item mdc-list-item--activated" href="#" aria-current="page">
+          <span class="mdc-list-item__ripple"></span>
+          <span class="mdc-list-item__text">Quick Test</span>
+        </router-link>
         <router-link :to="{ name: 'myapi'}" class="mdc-list-item mdc-list-item--activated" href="#" aria-current="page">
           <span class="mdc-list-item__ripple"></span>
           <span class="mdc-list-item__text">MyApi's</span>
