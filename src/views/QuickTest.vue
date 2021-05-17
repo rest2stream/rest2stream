@@ -43,14 +43,13 @@ export default {
   },
   setup() {
     const site = useSite();
-    const test = ref();
     const frm = ref({
       target_url: '',
       try_console: ''
     });
 
     watchEffect(() => {
-      frm.value.try_console = `curl -v "${import.meta.env.VITE_API_URI}/${frm.value.target_url}"`
+      frm.value.try_console = `curl -v "${import.meta.env.VITE_STREAM_URL}/${frm.value.target_url}"`
     })
 
     onMounted(() => {
