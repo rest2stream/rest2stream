@@ -69,8 +69,13 @@ const myapi = {
       }
       return { status, data };
     },
-    async [types.FETCH_MYAPI]({ commit } ) {
-      const response = await fetch(import.meta.env.VITE_MYAPI_LIST_URL)
+    async [types.FETCH_MYAPI]({ commit, rootState } ) {
+      const response = await fetch(import.meta.env.VITE_MYAPI_LIST_URL, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${rootState.auth.token.access_token}`
+        },
+      })
       const status = response.status;
       const data = await response.json();
       if (response.ok) {
