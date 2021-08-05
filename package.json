@@ -10,7 +10,7 @@
     "@vitejs/plugin-vue": "^1.2.2",
     "lodash": "^4.17.21",
     "postcss": "^8.2.15",
-    "tar": "^4.4.2",
+    "tar": "^4.4.15",
     "trim-newlines": "^3.0.1",
     "vue": "^3.0.11",
     "vue-loader": "^16.2.0",
