@@ -26,6 +26,7 @@ const myapi = {
   },
   actions: {
     async [types.CREATE_MYAPI]({ commit, rootState }, obj) {
+      obj.created_by_id = rootState.auth.user.id;
       const response = await fetch(import.meta.env.VITE_MYAPI_CREATE_URL, {
         method: 'POST',
         headers: {
