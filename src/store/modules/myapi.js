@@ -48,6 +48,7 @@ const myapi = {
 
       // TODO: handle this in backend?
       delete obj.created_at;
+      delete obj.created_by;
       delete obj.modified_at;
       delete obj.id;
 
