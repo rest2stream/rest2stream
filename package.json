@@ -1,6 +1,7 @@
 {
   "name": "vue3",
   "version": "0.0.0",
+  "engines" : { "node" : ">=16.13.0" }, 
   "scripts": {
     "dev": "vite",
     "build": "vite build"
