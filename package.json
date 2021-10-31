@@ -10,10 +10,10 @@
     "@vitejs/plugin-vue": "^1.2.2",
     "lodash": "^4.17.21",
     "path-parse": "^1.0.7",
-    "postcss": "^8.2.15",
+    "sass": "^1.43.4",
     "tar": "^4.4.18",
     "trim-newlines": "^3.0.1",
-    "vue": "^3.0.11",
+    "vue": "^3.2.16",
     "vue-loader": "^16.2.0",
     "vue-router": "^4.0.0-rc.1",
     "vuex": "^4.0.0",
@@ -22,9 +22,7 @@
   "devDependencies": {
     "@vue/compiler-sfc": "^3.0.11",
     "hosted-git-info": "^2.8.8",
-    "node-sass": "^5.0.0",
-    "sass": "^1.32.12",
-    "sass-loader": "^10.0.4",
-    "vite": "^2.2.4"
+    "@vitejs/plugin-vue": "^1.9.3",
+    "vite": "^2.6.4"
   }
 }
