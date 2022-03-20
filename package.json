@@ -1,29 +1,30 @@
 {
   "name": "vue3",
   "version": "0.0.0",
-  "engines" : { "node" : ">=16.13.0" }, 
+  "engines": {
+    "node": ">=16.13.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build"
   },
   "dependencies": {
-    "@material/theme": "^11.0.0",
-    "@vitejs/plugin-vue": "^1.2.2",
-    "lodash": "^4.17.21",
+    "@material/theme": "^13.0.0",
     "path-parse": "^1.0.7",
-    "sass": "^1.43.4",
-    "tar": "^4.4.18",
-    "trim-newlines": "^3.0.1",
-    "vue": "^3.2.16",
-    "vue-loader": "^16.2.0",
-    "vue-router": "^4.0.0-rc.1",
-    "vuex": "^4.0.0",
+    "sass": "^1.49.9",
+    "tar": "^6.1.11",
+    "trim-newlines": "^4.0.2",
+    "vue": "^3.2.31",
+    "vue-loader": "^17.0.0",
+    "vue-router": "^4.0.14",
+    "vuex": "^4.0.2",
     "vuex-persistedstate": "*"
   },
   "devDependencies": {
-    "@vue/compiler-sfc": "^3.0.11",
-    "hosted-git-info": "^2.8.8",
-    "@vitejs/plugin-vue": "^1.9.3",
-    "vite": "^2.6.4"
+    "@vitejs/plugin-vue": "^2.2.4",
+    "@vue/compiler-sfc": "^3.2.31",
+    "hosted-git-info": "^5.0.0",
+    "lodash": "^4.17.21",
+    "vite": "^2.8.6"
   }
 }
