@@ -1,9 +1,10 @@
+@use "@material/theme" with (
+  $primary:#009688,
+  $secondary: #536dfe,
+  $background: #95d3cd,
+);
 
-$mdc-theme-primary:#009688;
-$mdc-theme-secondary: #536dfe;
-$mdc-theme-background: #95d3cd;
-
-/*@import "@material/theme/mdc-theme";  @Todo */
+@use "@material/theme/mdc-theme"; 
 
 
 *, *:before, *:after {
